@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Fasilitas - SMA Lokon Tomohon</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- AOS Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #001f3f;
+            --gold: #f1c40f;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+            --gray: #6c757d;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --shadow-hover: 0 20px 40px rgba(0,0,0,0.15);
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* TYPOGRAPHY */
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--navy);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 2px;
+        }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-block;
+            background: var(--navy);
+            color: white;
+            padding: 0.7rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 10px rgba(0,31,63,0.3);
+        }
+
+        .btn:hover {
+            background: var(--gold);
+            color: var(--navy);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(241,196,15,0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--navy);
+            color: var(--navy);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: var(--navy);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* HEADER */
+        header {
+            background-color: var(--navy);
+            color: white;
+            padding: 1rem 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-img {
+            height: 55px;
+            width: auto;
+            transition: var(--transition);
+        }
+
+        .logo-img:hover {
+            transform: scale(1.05);
+        }
+
+        .school-name h1 {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .school-name p {
+            font-size: 0.75rem;
+            opacity: 0.9;
+            letter-spacing: 0.5px;
+        }
+
+        /* MENU TOGGLE */
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: white;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: var(--transition);
+        }
+
+        .menu-toggle:hover {
+            color: var(--gold);
+        }
+
+        /* NAVIGATION */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.8rem;
+            align-items: center;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+            border-bottom: 2px solid transparent;
+        }
+
+        nav ul li a:hover {
+            color: var(--gold);
+            border-bottom-color: var(--gold);
+        }
+
+        /* PAGE HERO with background image */
+        .page-hero {
+            position: relative;
+            background-image: url('data:image/jpeg;base64,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');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            text-align: center;
+            padding: 6rem 1rem;
+            margin-bottom: 2rem;
+            isolation: isolate;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0,31,63,0.8) 0%, rgba(0,0,0,0.6) 100%);
+            z-index: -1;
+        }
+
+        .page-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+        }
+
+        /* CARD GRID */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            top: 0;
+        }
+
+        .card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card-img {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--navy);
+            background-color: #e9ecef;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-img img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 1.8rem;
+        }
+
+        .card-content h3 {
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+
+        .card-content p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        /* Icon dalam card (jika tidak pakai gambar) */
+        .card-img i {
+            font-size: 5rem;
+            color: var(--navy);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--navy);
+            color: white;
+            padding: 3rem 5% 1.5rem;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            justify-content: space-between;
+            margin-bottom: 2.5rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            min-width: 250px;
+        }
+
+        .footer-logo img {
+            height: 70px;
+            width: auto;
+           
+        }
+
+        .footer-logo h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .footer-info {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-info h3 {
+            color: var(--gold);
+            margin-bottom: 1.2rem;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-info h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--gold);
+        }
+
+        .footer-info p {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .footer-info i {
+            color: var(--gold);
+            width: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.3rem;
+            transition: var(--transition);
+            border: 1px solid rgba(255,255,255,0.2);
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background: var(--gold);
+            color: var(--navy);
+            transform: translateY(-5px);
+            border-color: var(--gold);
+        }
+
+        .footer-copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                width: 100%;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease;
+            }
+
+            nav.active {
+                max-height: 500px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+                background-color: var(--navy);
+                padding: 1rem 0;
+                margin-top: 1rem;
+                border-top: 1px solid rgba(255,255,255,0.2);
+            }
+
+            nav ul li {
+                width: 100%;
+            }
+
+            nav ul li a {
+                padding: 1rem 2rem;
+                display: block;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .footer-logo {
+                justify-content: center;
+            }
+
+            .footer-info h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .footer-info p {
+                justify-content: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+            .logo-img {
+                height: 45px;
+            }
+            .school-name h1 {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="logo-container">
+            <img src="logo/smalokon.png" alt="SMA Lokon" class="logo-img">
+            <div class="school-name">
+                <h1>SMA LOKON</h1>
+                <p>ST. Nikolaus Tomohon</p>
+            </div>
+        </div>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav id="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="admission.html">Admission</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="facilities.html">Facilities</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- PAGE HERO with background image -->
+    <section class="page-hero">
+        <h1 data-aos="fade-down">Fasilitas Kami</h1>
+        <p data-aos="fade-up" data-aos-delay="100">Sarana dan prasarana terbaik untuk mendukung proses belajar mengajar</p>
+    </section>
+
+    <!-- DAFTAR FASILITAS -->
+    <section class="bg-light" style="padding-top: 0;">
+        <div class="card-grid">
+            <!-- Fasilitas 1 - Laboratorium -->
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Laboratorium">
+                </div>
+                <div class="card-content">
+                    <h3>Laboratorium Sains</h3>
+                    <p>Lab Fisika, Kimia, dan Biologi dengan peralatan modern untuk praktikum siswa.</p>
+                </div>
+            </div>
+
+            <!-- Fasilitas 2 - Perpustakaan -->
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Perpustakaan">
+                </div>
+                <div class="card-content">
+                    <h3>Perpustakaan</h3>
+                    <p>Koleksi ribuan buku, ruang baca nyaman, dan akses digital ke jurnal ilmiah.</p>
+                </div>
+            </div>
+
+            <!-- Fasilitas 3 - Lapangan Olahraga -->
+            <div class="card" data-aos="fade-up" data-aos-delay="300">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1575361204480-a0d7e3c5c6b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Lapangan">
+                </div>
+                <div class="card-content">
+                    <h3>Lapangan Olahraga</h3>
+                    <p>Lapangan basket, voli, futsal, dan area atletik untuk pengembangan bakat olahraga.</p>
+                </div>
+            </div>
+
+            <!-- Fasilitas 4 - Ruang Kelas -->
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Ruang Kelas">
+                </div>
+                <div class="card-content">
+                    <h3>Ruang Kelas Smart</h3>
+                    <p>Kelas ber-AC dengan smart TV, akses Wi-Fi, dan desain interior yang mendukung kenyamanan belajar.</p>
+                </div>
+            </div>
+
+            <!-- Fasilitas 5 - Aula Serbaguna -->
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Aula">
+                </div>
+                <div class="card-content">
+                    <h3>Aula Serbaguna</h3>
+                    <p>Ruang pertemuan, seminar, dan kegiatan kesenian dengan kapasitas 500 orang.</p>
+                </div>
+            </div>
+
+            <!-- Fasilitas 6 - Kantin Sehat -->
+            <div class="card" data-aos="fade-up" data-aos-delay="300">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Kantin">
+                </div>
+                <div class="card-content">
+                    <h3>Kantin Sehat</h3>
+                    <p>Menyediakan makanan bergizi dengan harga terjangkau, kebersihan terjaga.</p>
+                </div>
+            </div>
+
+            <!-- Fasilitas 7 - Area Parkir Luas -->
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-img">
+                    <i class="fas fa-parking"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Area Parkir Luas</h3>
+                    <p>Parkir kendaraan roda dua dan empat yang aman dan tertata rapi.</p>
+                </div>
+            </div>
+
+            <!-- Fasilitas 8 - Lahan Hijau -->
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-img">
+                    <i class="fas fa-tree"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Lahan Hijau & Taman</h3>
+                    <p>Area taman yang asri untuk relaksasi dan kegiatan outdoor siswa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="logo/smalokon.png" alt="SMA Lokon">
+                <h2>SMA LOKON</h2>
+            </div>
+            <div class="footer-info">
+                <h3>Alamat</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Jl. Pendidikan No. 123, Tomohon, Sulawesi Utara</p>
+                <p><i class="fas fa-phone-alt"></i> (0431) 123456</p>
+                <p><i class="fas fa-envelope"></i> info@smalokon.sch.id</p>
+            </div>
+            <div class="footer-info">
+                <h3>Ikuti Kami</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            &copy; 2026 SMA LOKON Tomohon. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- AOS INIT & SCRIPTS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        const menuToggle = document.getElementById('menuToggle');
+        const nav = document.getElementById('navbar');
+
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        const navLinks = document.querySelectorAll('#navbar ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    nav.classList.remove('active');
+                    const icon = menuToggle.querySelector('i');
+                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-times');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
