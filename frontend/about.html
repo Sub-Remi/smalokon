@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Tentang Kami - SMA Lokon Tomohon</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#001f3f',
+                        gold: '#f1c40f',
+                    }
+                }
+            }
+        }
+    </script>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Google Fonts -->
@@ -11,540 +26,134 @@
     <!-- AOS Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --navy: #001f3f;
-            --gold: #f1c40f;
-            --light-bg: #f8f9fa;
-            --white: #ffffff;
-            --gray: #6c757d;
-            --shadow: 0 10px 30px rgba(0,0,0,0.1);
-            --shadow-hover: 0 20px 40px rgba(0,0,0,0.15);
-            --transition: all 0.3s ease;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: var(--white);
-            overflow-x: hidden;
-        }
-
-        /* TYPOGRAPHY */
-        h1, h2, h3, h4 {
-            font-weight: 600;
-            line-height: 1.3;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            font-size: 2.5rem;
-            color: var(--navy);
-            position: relative;
-            padding-bottom: 1rem;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--gold);
-            border-radius: 2px;
-        }
-
-        /* BUTTONS */
-        .btn {
-            display: inline-block;
-            background: var(--navy);
-            color: white;
-            padding: 0.7rem 1.8rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            font-size: 0.95rem;
-            box-shadow: 0 4px 10px rgba(0,31,63,0.3);
-        }
-
-        .btn:hover {
-            background: var(--gold);
-            color: var(--navy);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(241,196,15,0.4);
-        }
-
-        /* HEADER */
-        header {
-            background-color: var(--navy);
-            color: white;
-            padding: 1rem 5%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .logo-img {
-            height: 70px;
-            width: auto;
-            transition: var(--transition);
-        }
-
-        .logo-img:hover {
-            transform: scale(1.05);
-        }
-
-        .school-name h1 {
-            font-size: 1.3rem;
-            font-weight: 600;
-        }
-
-        .school-name p {
-            font-size: 0.75rem;
-            opacity: 0.9;
-            letter-spacing: 0.5px;
-        }
-
-        /* MENU TOGGLE */
-        .menu-toggle {
-            display: none;
-            font-size: 1.8rem;
-            color: white;
-            cursor: pointer;
-            background: none;
-            border: none;
-            transition: var(--transition);
-        }
-
-        .menu-toggle:hover {
-            color: var(--gold);
-        }
-
-        /* NAVIGATION */
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 1.8rem;
-            align-items: center;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            padding: 0.5rem 0;
-            transition: var(--transition);
-            border-bottom: 2px solid transparent;
-        }
-
-        nav ul li a:hover {
-            color: var(--gold);
-            border-bottom-color: var(--gold);
-        }
-
-        /* PAGE HERO DENGAN BACKGROUND GAMBAR */
+        /* Custom untuk page hero dengan background gambar */
         .page-hero {
+            background-image: url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
             position: relative;
-            background: url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
-            color: white;
-            text-align: center;
-            padding: 6rem 1rem;
-            margin-bottom: 2rem;
             isolation: isolate;
         }
-
         .page-hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 31, 63, 0.7); /* overlay navy */
+            inset: 0;
+            background: rgba(0, 31, 63, 0.7);
             z-index: -1;
-        }
-
-        .page-hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-        }
-
-        .page-hero p {
-            font-size: 1.3rem;
-            opacity: 0.95;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* CARDS UNTUK VISI MISI */
-        .vision-mission-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem;
-        }
-
-        .vm-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            text-align: center;
-            border-bottom: 4px solid var(--gold);
-        }
-
-        .vm-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .vm-card i {
-            font-size: 3rem;
-            color: var(--gold);
-            margin-bottom: 1rem;
-        }
-
-        .vm-card h3 {
-            color: var(--navy);
-            margin-bottom: 1rem;
-            font-size: 1.8rem;
-        }
-
-        .vm-card p {
-            color: var(--gray);
-            font-size: 1rem;
-        }
-
-
-        /* FOOTER */
-        footer {
-            background: var(--navy);
-            color: white;
-            padding: 3rem 5% 1.5rem;
-        }
-
-        .footer-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 3rem;
-            justify-content: space-between;
-            margin-bottom: 2.5rem;
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            min-width: 250px;
-        }
-
-        .footer-logo img {
-            height: 70px;
-            width: auto;
-        }
-
-        .footer-logo h2 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: white;
-        }
-
-        .footer-info {
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .footer-info h3 {
-            color: var(--gold);
-            margin-bottom: 1.2rem;
-            font-size: 1.3rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        .footer-info h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 3px;
-            background: var(--gold);
-        }
-
-        .footer-info p {
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-
-        .footer-info i {
-            color: var(--gold);
-            width: 20px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.2rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 45px;
-            height: 45px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            color: white;
-            font-size: 1.3rem;
-            transition: var(--transition);
-            border: 1px solid rgba(255,255,255,0.2);
-            text-decoration: none;
-        }
-
-        .social-links a:hover {
-            background: var(--gold);
-            color: var(--navy);
-            transform: translateY(-5px);
-            border-color: var(--gold);
-        }
-
-        .footer-copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.2);
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-
-            nav {
-                width: 100%;
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.4s ease;
-            }
-
-            nav.active {
-                max-height: 500px;
-            }
-
-            nav ul {
-                flex-direction: column;
-                gap: 0;
-                background-color: var(--navy);
-                padding: 1rem 0;
-                margin-top: 1rem;
-                border-top: 1px solid rgba(255,255,255,0.2);
-            }
-
-            nav ul li {
-                width: 100%;
-            }
-
-            nav ul li a {
-                padding: 1rem 2rem;
-                display: block;
-                border-bottom: 1px solid rgba(255,255,255,0.1);
-            }
-
-            .page-hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .page-hero p {
-                font-size: 1.1rem;
-            }
-
-            .footer-container {
-                flex-direction: column;
-                gap: 2rem;
-            }
-
-            .footer-logo {
-                justify-content: center;
-            }
-
-            .footer-info h3::after {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-
-            .footer-info p {
-                justify-content: center;
-            }
-
-            .social-links {
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .page-hero h1 {
-                font-size: 2rem;
-            }
-            .logo-img {
-                height: 45px;
-            }
-            .school-name h1 {
-                font-size: 1.1rem;
-            }
         }
     </style>
 </head>
-<body>
-    <!-- HEADER (sama dengan index) -->
-    <header>
-        <div class="logo-container">
-            <img src="logo/smalokon.png" alt="SMA Lokon" class="logo-img">
-            <div class="school-name">
-                <h1>SMA LOKON</h1>
-                <p>ST. Nikolaus Tomohon</p>
+<body class="font-[Poppins] overflow-x-hidden">
+
+    <!-- HEADER (sama persis dengan index) -->
+    <header class="sticky top-0 z-50 bg-navy text-white px-5 py-4 flex flex-wrap items-center justify-between shadow-md">
+        <div class="flex items-center gap-4">
+            <img src="logo/smalokon.png" alt="SMA Lokon" class="h-[70px] w-auto transition-transform hover:scale-105">
+            <div>
+                <h1 class="text-xl font-semibold">SMA LOKON</h1>
+                <p class="text-xs opacity-90 tracking-wide">ST. Nikolaus Tomohon</p>
             </div>
         </div>
-        <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+        <button class="menu-toggle text-2xl text-white md:hidden hover:text-gold transition" id="menuToggle" aria-label="Menu">
             <i class="fas fa-bars"></i>
         </button>
-        <nav id="navbar">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="admission.html">Admission</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="facilities.html">Facilities</a></li>
-                <li><a href="news.html">News</a></li>
-                <li><a href="contact.html">Contact</a></li>
+        <nav id="navbar" class="w-full md:w-auto max-h-0 md:max-h-none overflow-hidden md:overflow-visible transition-all duration-300">
+            <ul class="flex flex-col md:flex-row items-center gap-0 md:gap-[1.8rem] bg-navy md:bg-transparent mt-4 md:mt-0">
+                <li><a href="index.html" class="block py-3 px-8 md:px-0 md:py-2 border-b-2 border-transparent hover:text-gold hover:border-gold transition">Home</a></li>
+                <li><a href="about.html" class="block py-3 px-8 md:px-0 md:py-2 border-b-2 border-transparent hover:text-gold hover:border-gold transition">About</a></li>
+                <li><a href="admission.html" class="block py-3 px-8 md:px-0 md:py-2 border-b-2 border-transparent hover:text-gold hover:border-gold transition">Admission</a></li>
+                <li><a href="gallery.html" class="block py-3 px-8 md:px-0 md:py-2 border-b-2 border-transparent hover:text-gold hover:border-gold transition">Gallery</a></li>
+                <li><a href="facilities.html" class="block py-3 px-8 md:px-0 md:py-2 border-b-2 border-transparent hover:text-gold hover:border-gold transition">Facilities</a></li>
+                <li><a href="news.html" class="block py-3 px-8 md:px-0 md:py-2 border-b-2 border-transparent hover:text-gold hover:border-gold transition">News</a></li>
+                <li><a href="contact.html" class="block py-3 px-8 md:px-0 md:py-2 border-b-2 border-transparent hover:text-gold hover:border-gold transition">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- PAGE HERO DENGAN BACKGROUND GAMBAR -->
-    <section class="page-hero">
-        <h1 data-aos="fade-down">Tentang Kami</h1>
-        <p data-aos="fade-up" data-aos-delay="100">Mengenal lebih dekat SMA Lokon Tomohon</p>
+    <!-- PAGE HERO -->
+    <section class="page-hero text-white text-center py-24 md:py-32 px-4 mb-8">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 drop-shadow-lg" data-aos="fade-down">Tentang Kami</h1>
+        <p class="text-lg md:text-xl max-w-2xl mx-auto opacity-95 drop-shadow-md" data-aos="fade-up" data-aos-delay="100">Mengenal lebih dekat SMA Lokon Tomohon</p>
     </section>
 
     <!-- VISI, MISI, TUJUAN -->
-    <section class="bg-light">
-        <h2 class="section-title" data-aos="fade-up">Visi, Misi & Tujuan</h2>
-        <div class="vision-mission-grid">
-            <div class="vm-card" data-aos="fade-right" data-aos-delay="100">
-                <i class="fas fa-eye"></i>
-                <h3>Visi</h3>
-                <p>Menjadi lembaga pendidikan unggulan yang membentuk generasi beriman, cerdas, dan berkarakter berdasarkan nilai-nilai Kristiani.</p>
+    <section class="py-16 px-5 bg-gray-100">
+        <h2 class="text-4xl font-bold text-center text-navy mb-12 relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gold after:rounded" data-aos="fade-up">Visi, Misi & Tujuan</h2>
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Visi -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg hover:-translate-y-2 hover:shadow-xl transition border-b-4 border-gold" data-aos="fade-right" data-aos-delay="100">
+                <i class="fas fa-eye text-5xl text-gold mb-4"></i>
+                <h3 class="text-2xl font-bold text-navy mb-3">Visi</h3>
+                <p class="text-gray-600">Menjadi lembaga pendidikan unggulan yang membentuk generasi beriman, cerdas, dan berkarakter berdasarkan nilai-nilai Kristiani.</p>
             </div>
-            <div class="vm-card" data-aos="fade-up" data-aos-delay="200">
-                <i class="fas fa-bullseye"></i>
-                <h3>Misi</h3>
-                <p>Menyelenggarakan pembelajaran berkualitas, membina karakter Kristiani, mengembangkan potensi siswa secara holistik, dan menciptakan lingkungan sekolah yang aman dan menyenangkan.</p>
+            <!-- Misi -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg hover:-translate-y-2 hover:shadow-xl transition border-b-4 border-gold" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-bullseye text-5xl text-gold mb-4"></i>
+                <h3 class="text-2xl font-bold text-navy mb-3">Misi</h3>
+                <p class="text-gray-600">Menyelenggarakan pembelajaran berkualitas, membina karakter Kristiani, mengembangkan potensi siswa secara holistik, dan menciptakan lingkungan sekolah yang aman dan menyenangkan.</p>
             </div>
-            <div class="vm-card" data-aos="fade-left" data-aos-delay="300">
-                <i class="fas fa-flag-checkered"></i>
-                <h3>Tujuan</h3>
-                <p>Menghasilkan lulusan yang beriman, cerdas, terampil, dan siap melanjutkan pendidikan ke jenjang yang lebih tinggi serta menjadi pemimpin masa depan.</p>
+            <!-- Tujuan -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg hover:-translate-y-2 hover:shadow-xl transition border-b-4 border-gold" data-aos="fade-left" data-aos-delay="300">
+                <i class="fas fa-flag-checkered text-5xl text-gold mb-4"></i>
+                <h3 class="text-2xl font-bold text-navy mb-3">Tujuan</h3>
+                <p class="text-gray-600">Menghasilkan lulusan yang beriman, cerdas, terampil, dan siap melanjutkan pendidikan ke jenjang yang lebih tinggi serta menjadi pemimpin masa depan.</p>
             </div>
         </div>
     </section>
 
+    -->
 
-
-    <!-- FOOTER (sama dengan index) -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-logo">
-                <img src="logo/smalokon.png" alt="SMA Lokon">
-                <h2>SMA LOKON</h2>
+    <!-- FOOTER (sama persis dengan index) -->
+    <footer class="bg-navy text-white py-12 px-5">
+        <div class="max-w-6xl mx-auto flex flex-wrap gap-12 justify-between mb-8">
+            <div class="flex items-center gap-4 min-w-[250px]">
+                <img src="logo/smalokon.png" alt="SMA Lokon" class="h-20 w-auto ">
+                <h2 class="text-3xl font-bold">SMA LOKON</h2>
             </div>
-            <div class="footer-info">
-                <h3>Alamat</h3>
-                <p><i class="fas fa-map-marker-alt"></i> Jl. Pendidikan No. 123, Tomohon, Sulawesi Utara</p>
-                <p><i class="fas fa-phone-alt"></i> (0431) 123456</p>
-                <p><i class="fas fa-envelope"></i> info@smalokon.sch.id</p>
+            <div class="flex-1 min-w-[200px]">
+                <h3 class="text-gold text-xl mb-4 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-10 after:h-0.5 after:bg-gold pb-2">Alamat</h3>
+                <p class="flex items-center gap-3 mb-3 opacity-90"><i class="fas fa-map-marker-alt text-gold w-5"></i> Jl. Pendidikan No. 123, Tomohon, Sulawesi Utara</p>
+                <p class="flex items-center gap-3 mb-3 opacity-90"><i class="fas fa-phone-alt text-gold w-5"></i> (0431) 123456</p>
+                <p class="flex items-center gap-3 mb-3 opacity-90"><i class="fas fa-envelope text-gold w-5"></i> info@smalokon.sch.id</p>
             </div>
-            <div class="footer-info">
-                <h3>Ikuti Kami</h3>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#"><i class="fab fa-tiktok"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
+            <div class="flex-1 min-w-[200px]">
+                <h3 class="text-gold text-xl mb-4 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-10 after:h-0.5 after:bg-gold pb-2">Ikuti Kami</h3>
+                <div class="flex gap-3">
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold hover:text-navy transition border border-white/20"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold hover:text-navy transition border border-white/20"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold hover:text-navy transition border border-white/20"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold hover:text-navy transition border border-white/20"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold hover:text-navy transition border border-white/20"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
         </div>
-        <div class="footer-copyright">
+        <div class="text-center pt-6 border-t border-white/20 text-sm opacity-80">
             &copy; 2026 SMA LOKON Tomohon. All rights reserved.
         </div>
     </footer>
 
-    <!-- AOS INIT & SCRIPTS -->
+    <!-- AOS & SCRIPTS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 100
-        });
+        AOS.init({ duration: 1000, once: true, offset: 100 });
 
-        // HAMBURGER MENU
+        // HAMBURGER MENU (sama dengan index)
         const menuToggle = document.getElementById('menuToggle');
         const nav = document.getElementById('navbar');
-
         menuToggle.addEventListener('click', () => {
-            nav.classList.toggle('active');
+            nav.classList.toggle('max-h-0');
+            nav.classList.toggle('max-h-[500px]');
             const icon = menuToggle.querySelector('i');
             icon.classList.toggle('fa-bars');
             icon.classList.toggle('fa-times');
         });
 
-        // TUTUP MENU SAAT LINK DIKLIK (MOBILE)
         const navLinks = document.querySelectorAll('#navbar ul li a');
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 if (window.innerWidth <= 768) {
-                    nav.classList.remove('active');
+                    nav.classList.add('max-h-0');
+                    nav.classList.remove('max-h-[500px]');
                     const icon = menuToggle.querySelector('i');
                     icon.classList.add('fa-bars');
                     icon.classList.remove('fa-times');

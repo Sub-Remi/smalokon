@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>SMA Lokon Tomohon - Official Website</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#001f3f',
+                        gold: '#f1c40f',
+                    }
+                }
+            }
+        }
+    </script>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Google Fonts -->
@@ -11,1001 +26,234 @@
     <!-- AOS Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --navy: #001f3f;
-            --gold: #f1c40f;
-            --light-bg: #f8f9fa;
-            --white: #ffffff;
-            --gray: #6c757d;
-            --shadow: 0 10px 30px rgba(0,0,0,0.1);
-            --shadow-hover: 0 20px 40px rgba(0,0,0,0.15);
-            --transition: all 0.3s ease;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: var(--white);
-            overflow-x: hidden;
-        }
-
-        /* TYPOGRAPHY */
-        h1, h2, h3, h4 {
-            font-weight: 600;
-            line-height: 1.3;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            font-size: 2.5rem;
-            color: var(--navy);
-            position: relative;
-            padding-bottom: 1rem;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--gold);
-            border-radius: 2px;
-        }
-
-        /* BUTTONS */
-        .btn {
-            display: inline-block;
-            background: var(--navy);
-            color: white;
-            padding: 0.7rem 1.8rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            font-size: 0.95rem;
-            box-shadow: 0 4px 10px rgba(0,31,63,0.3);
-        }
-
-        .btn:hover {
-            background: var(--gold);
-            color: var(--navy);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(241,196,15,0.4);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--navy);
-            color: var(--navy);
-            box-shadow: none;
-        }
-
-        .btn-outline:hover {
-            background: var(--navy);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        /* HEADER */
-        header {
-            background-color: var(--navy);
-            color: white;
-            padding: 1rem 5%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .logo-img {
-            height: 70px;
-            width: auto;
-            transition: var(--transition);
-        }
-
-        .logo-img:hover {
-            transform: scale(1.05);
-        }
-
-        .school-name h1 {
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        .school-name p {
-            font-size: 0.75rem;
-            opacity: 0.9;
-            letter-spacing: 0.5px;
-        }
-
-        /* MENU TOGGLE */
-        .menu-toggle {
-            display: none;
-            font-size: 1.8rem;
-            color: white;
-            cursor: pointer;
-            background: none;
-            border: none;
-            transition: var(--transition);
-        }
-
-        .menu-toggle:hover {
-            color: var(--gold);
-        }
-
-        /* NAVIGATION - NO DROPDOWN */
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 1.8rem;
-            align-items: center;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            padding: 0.5rem 0;
-            transition: var(--transition);
-            border-bottom: 2px solid transparent;
-        }
-
-        nav ul li a:hover {
-            color: var(--gold);
-            border-bottom-color: var(--gold);
-        }
-
-        /* HERO SLIDER */
-        .hero {
-            position: relative;
-            width: 100vw;
-            height: 87vh;
-            min-height: 600px;
-            left: 50%;
-            right: 50%;
-            margin-left: -50vw;
-            margin-right: -50vw;
-            overflow: hidden;
-        }
-
-        .slider-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            opacity: 0;
-            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .slide.active {
-            opacity: 1;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(0,31,63,0.7) 0%, rgba(0,0,0,0.5) 100%);
-            z-index: 1;
-        }
-
-        .hero-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            color: white;
-            z-index: 2;
-            width: 90%;
-            max-width: 800px;
-            animation: fadeInUp 1.5s ease;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translate(-50%, 20px);
-            }
-            to {
-                opacity: 1;
-                transform: translate(-50%, -50%);
-            }
-        }
-
-        .hero-content .logo-hero-img {
-            max-height: 150px;
-            width: auto;
-            margin-bottom: 1.5rem;
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
-            animation: float 3s infinite ease-in-out;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0); }
-        }
-
-        .hero-content h2 {
-            font-size: 3.2rem;
-            margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-            font-weight: 700;
-            letter-spacing: 2px;
-        }
-
-        .hero-content p {
-            font-size: 1.5rem;
-            font-style: italic;
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-        }
-
-        .slider-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255,255,255,0.2);
-            backdrop-filter: blur(5px);
-            color: white;
-            border: 1px solid rgba(255,255,255,0.3);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 1.3rem;
-            cursor: pointer;
-            z-index: 3;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .slider-btn:hover {
-            background: var(--gold);
-            color: var(--navy);
-            border-color: var(--gold);
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .prev {
-            left: 30px;
-        }
-
-        .next {
-            right: 30px;
-        }
-
-        /* SECTIONS */
-        section {
-            padding: 5rem 5%;
-        }
-
-        .bg-light {
-            background-color: var(--light-bg);
-        }
-
-        .bg-white {
-            background-color: var(--white);
-        }
-
-        /* CARD STYLES */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            position: relative;
-            top: 0;
-        }
-
-        .card:hover {
-            transform: translateY(-15px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .card-img {
-            height: 220px;
-            overflow: hidden;
-            position: relative;
-            background: #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: var(--gray);
-        }
-
-        .card-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .card:hover .card-img img {
-            transform: scale(1.1);
-        }
-
-        .card-content {
-            padding: 1.8rem;
-        }
-
-        .card-content h3 {
-            color: var(--navy);
-            margin-bottom: 0.5rem;
-            font-size: 1.4rem;
-        }
-
-        .card-content p {
-            color: var(--gray);
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-        }
-
-        /* WELCOME SECTION (kata pembuka) */
-        .welcome-content {
-            display: flex;
-            align-items: center;
-            gap: 4rem;
-            flex-wrap: wrap;
-        }
-
-        .welcome-text {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .welcome-text h3 {
-            color: var(--navy);
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .welcome-text p {
-            font-size: 1.1rem;
-            color: var(--gray);
-            margin-bottom: 1.5rem;
-        }
-
-        .welcome-image {
-            flex: 1;
-            text-align: center;
-            min-width: 300px;
-        }
-
-        .welcome-image img {
-            max-width: 100%;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-        }
-
-        /* ADMISSION CTA */
-        .admission-cta {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-            background: var(--white);
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-        }
-
-        .admission-cta h3 {
-            font-size: 2rem;
-            color: var(--navy);
-            margin-bottom: 1rem;
-        }
-
-        .admission-cta p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-        }
-
-        /* MAP */
-        .map-container {
-            width: 100%;
-            height: 400px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-        }
-
-        .map-container iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-
-        /* CONTACT */
-        .contact-container {
-            display: flex;
-            gap: 4rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-info {
-            flex: 1;
-            min-width: 280px;
-        }
-
-        .contact-info h3 {
-            color: var(--navy);
-            margin-bottom: 1.5rem;
-            font-size: 1.6rem;
-        }
-
-        .contact-info p {
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            font-size: 1.1rem;
-        }
-
-        .contact-info i {
-            color: var(--gold);
-            width: 25px;
-            font-size: 1.3rem;
-        }
-
-        .contact-form {
-            flex: 2;
-            min-width: 300px;
-        }
-
-        .form-group {
-            margin-bottom: 1.2rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 1px solid #e0e0e0;
-            border-radius: 10px;
-            font-family: inherit;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--gold);
-            box-shadow: 0 0 0 3px rgba(241,196,15,0.2);
-        }
-
-        .form-group textarea {
-            height: 150px;
-            resize: vertical;
-        }
-
-        /* FOOTER */
-        footer {
-            background: var(--navy);
-            color: white;
-            padding: 3rem 5% 1.5rem;
-        }
-
-        .footer-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 3rem;
-            justify-content: space-between;
-            margin-bottom: 2.5rem;
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            min-width: 250px;
-        }
-
-        .footer-logo img {
-            height: 90px;
-            width: auto;
-            
-        }
-
-        .footer-logo h2 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: white;
-        }
-
-        .footer-info {
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .footer-info h3 {
-            color: var(--gold);
-            margin-bottom: 1.2rem;
-            font-size: 1.3rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        .footer-info h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 3px;
-            background: var(--gold);
-        }
-
-        .footer-info p {
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-
-        .footer-info i {
-            color: var(--gold);
-            width: 20px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.2rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 45px;
-            height: 45px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            color: white;
-            font-size: 1.3rem;
-            transition: var(--transition);
-            border: 1px solid rgba(255,255,255,0.2);
-            text-decoration: none;
-        }
-
-        .social-links a:hover {
-            background: var(--gold);
-            color: var(--navy);
-            transform: translateY(-5px);
-            border-color: var(--gold);
-        }
-
-        .footer-copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.2);
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 992px) {
-            .hero-content h2 {
-                font-size: 2.8rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-
-            nav {
-                width: 100%;
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.4s ease;
-            }
-
-            nav.active {
-                max-height: 500px; /* cukup untuk 7 menu */
-            }
-
-            nav ul {
-                flex-direction: column;
-                gap: 0;
-                background-color: var(--navy);
-                padding: 1rem 0;
-                margin-top: 1rem;
-                border-top: 1px solid rgba(255,255,255,0.2);
-            }
-
-            nav ul li {
-                width: 100%;
-            }
-
-            nav ul li a {
-                padding: 1rem 2rem;
-                display: block;
-                border-bottom: 1px solid rgba(255,255,255,0.1);
-            }
-
-            .hero {
-                height: 70vh;
-                min-height: 500px;
-            }
-
-            .hero-content h2 {
-                font-size: 2.2rem;
-            }
-
-            .hero-content p {
-                font-size: 1.2rem;
-            }
-
-            .hero-content .logo-hero-img {
-                max-height: 120px;
-            }
-
-            .slider-btn {
-                width: 40px;
-                height: 40px;
-                font-size: 1.1rem;
-            }
-
-            .prev {
-                left: 15px;
-            }
-
-            .next {
-                right: 15px;
-            }
-
-            .section-title {
-                font-size: 2.2rem;
-            }
-
-            .welcome-content {
-                flex-direction: column;
-                text-align: center;
-                gap: 2rem;
-            }
-
-            .admission-cta {
-                padding: 2rem;
-            }
-
-            .footer-container {
-                flex-direction: column;
-                gap: 2rem;
-            }
-
-            .footer-logo {
-                justify-content: center;
-            }
-
-            .footer-info h3::after {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-
-            .footer-info p {
-                justify-content: center;
-            }
-
-            .social-links {
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-content h2 {
-                font-size: 1.8rem;
-            }
-
-            .hero-content p {
-                font-size: 1rem;
-            }
-
-            .logo-img {
-                height: 45px;
-            }
-
-            .school-name h1 {
-                font-size: 1.1rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-        }
+        /* Custom styles for slider (karena Tailwind tidak mencakup animasi slider) */
+        .hero { width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; overflow: hidden; }
+        .slider-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1); }
+        .slide.active { opacity: 1; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translate(-50%, 20px); } to { opacity: 1; transform: translate(-50%, -50%); } }
+        @keyframes float { 0% { transform: translateY(0); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0); } }
+        .animate-float { animation: float 3s infinite ease-in-out; }
     </style>
 </head>
-<body>
+<body class="font-[Poppins] overflow-x-hidden">
+
     <!-- HEADER -->
-    <header>
-        <div class="logo-container">
-            <img src="logo/smalokon.png" alt="SMA Lokon" class="logo-img">
-            <div class="school-name">
-                <h1>SMA LOKON</h1>
-                <p>ST. Nikolaus Tomohon</p>
+    <header class="sticky top-0 z-50 bg-navy text-white px-5 py-4 flex flex-wrap items-center justify-between shadow-md">
+        <div class="flex items-center gap-4">
+            <img src="logo/smalokon.png" alt="SMA Lokon" class="h-[70px] w-auto transition-transform hover:scale-105">
+            <div>
+                <h1 class="text-xl font-semibold">SMA LOKON</h1>
+                <p class="text-xs opacity-90 tracking-wide">ST. Nikolaus Tomohon</p>
             </div>
         </div>
-        <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+        <button class="menu-toggle text-2xl text-white md:hidden hover:text-gold transition" id="menuToggle" aria-label="Menu">
             <i class="fas fa-bars"></i>
         </button>
-        <nav id="navbar">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="admission.html">Admission</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="facilities.html">Facilities</a></li>
-                <li><a href="news.html">News</a></li>
-                <li><a href="contact.html">Contact</a></li>
+        <nav id="navbar" class="w-full md:w-auto max-h-0 md:max-h-none overflow-hidden md:overflow-visible transition-all duration-300">
+            <ul class="flex flex-col md:flex-row items-center gap-0 md:gap-[1.8rem] bg-navy md:bg-transparent mt-4 md:mt-0">
+                <li><a href="index.html" class="block py-3 px-8 md:px-0 md:py-2 border-b-2 border-transparent hover:text-gold hover:border-gold transition">Home</a></li>
+                <li><a href="about.html" class="block py-3 px-8 md:px-0 md:py-2 border-b-2 border-transparent hover:text-gold hover:border-gold transition">About</a></li>
+                <li><a href="admission.html" class="block py-3 px-8 md:px-0 md:py-2 border-b-2 border-transparent hover:text-gold hover:border-gold transition">Admission</a></li>
+                <li><a href="gallery.html" class="block py-3 px-8 md:px-0 md:py-2 border-b-2 border-transparent hover:text-gold hover:border-gold transition">Gallery</a></li>
+                <li><a href="facilities.html" class="block py-3 px-8 md:px-0 md:py-2 border-b-2 border-transparent hover:text-gold hover:border-gold transition">Facilities</a></li>
+                <li><a href="news.html" class="block py-3 px-8 md:px-0 md:py-2 border-b-2 border-transparent hover:text-gold hover:border-gold transition">News</a></li>
+                <li><a href="contact.html" class="block py-3 px-8 md:px-0 md:py-2 border-b-2 border-transparent hover:text-gold hover:border-gold transition">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- HERO SLIDER (Beranda) -->
-    <section id="home" class="hero">
+    <!-- HERO SLIDER -->
+    <section class="hero h-[87vh] min-h-[600px] relative">
         <div class="slider-container">
             <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');"></div>
             <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');"></div>
             <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');"></div>
         </div>
-        <div class="hero-content">
-            <img src="logo/smalokon.png" alt="SMA Lokon" class="logo-hero-img">
-            <h2>SMA LOKON TOMOHON</h2>
-            <p>Veritas - Virtus - Fides</p>
+        <!-- overlay -->
+        <div class="absolute inset-0 bg-gradient-to-br from-navy/70 to-black/50 z-10"></div>
+        <!-- konten -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-white z-20 w-[90%] max-w-3xl animate-[fadeInUp_1.5s_ease]">
+            <img src="logo/smalokon.png" alt="SMA Lokon" class="max-h-[150px] w-auto mx-auto mb-6 drop-shadow-lg animate-float">
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-2 drop-shadow-lg">SMA LOKON TOMOHON</h2>
+            <p class="text-xl md:text-2xl italic drop-shadow-md">Veritas - Virtus - Fides</p>
         </div>
-        <button class="slider-btn prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
-        <button class="slider-btn next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+        <!-- tombol slider -->
+        <button class="slider-btn prev absolute top-1/2 left-4 md:left-8 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-gold hover:text-navy hover:border-gold transition z-30 flex items-center justify-center text-xl" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="slider-btn next absolute top-1/2 right-4 md:right-8 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-gold hover:text-navy hover:border-gold transition z-30 flex items-center justify-center text-xl" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
     </section>
 
-    <!-- KATA PEMBUKA (Tentang Sekolah) -->
-    <section class="bg-light">
-        <div class="welcome-content">
-            <div class="welcome-text" data-aos="fade-right">
-                <h3>Selamat Datang di SMA Lokon Tomohon</h3>
-                <p>Kami adalah lembaga pendidikan yang berkomitmen membentuk generasi muda yang cerdas, beriman, dan berkarakter. Dengan dukungan tenaga pendidik profesional dan fasilitas modern, kami siap mengantarkan siswa menuju masa depan gemilang.</p>
-                <a href="about.html" class="btn">Selengkapnya</a>
+    <!-- KATA PEMBUKA -->
+    <section class="py-20 px-5 bg-gray-100">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+            <div class="flex-1" data-aos="fade-right">
+                <h3 class="text-3xl md:text-4xl font-bold text-navy mb-4">Selamat Datang di SMA Lokon Tomohon</h3>
+                <p class="text-gray-600 text-lg mb-6">Kami adalah lembaga pendidikan yang berkomitmen membentuk generasi muda yang cerdas, beriman, dan berkarakter. Dengan dukungan tenaga pendidik profesional dan fasilitas modern, kami siap mengantarkan siswa menuju masa depan gemilang.</p>
+                <a href="about.html" class="inline-block bg-navy text-white px-8 py-3 rounded-full font-medium shadow-md hover:bg-gold hover:text-navy hover:-translate-y-1 transition">Selengkapnya</a>
             </div>
-            <div class="welcome-image" data-aos="fade-left">
-                <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Sekolah">
+            <div class="flex-1" data-aos="fade-left">
+                <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Sekolah" class="rounded-2xl shadow-xl w-full">
             </div>
         </div>
     </section>
 
-    <!-- BERITA (hanya 3 berita terbaru) -->
-    <section id="berita" class="bg-white">
-        <h2 class="section-title" data-aos="fade-up">Berita Terbaru</h2>
-        <div class="card-grid">
-            <div class="card" data-aos="fade-right" data-aos-delay="100">
-                <div class="card-img">
-                    <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Berita">
+    <!-- BERITA TERBARU -->
+    <section class="py-20 px-5 bg-white">
+        <h2 class="text-4xl font-bold text-center text-navy mb-12 relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gold after:rounded" data-aos="fade-up">Berita Terbaru</h2>
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- card 1 -->
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:-translate-y-4 hover:shadow-2xl transition" data-aos="fade-right" data-aos-delay="100">
+                <div class="h-56 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Berita" class="w-full h-full object-cover hover:scale-110 transition duration-500">
                 </div>
-                <div class="card-content">
-                    <h3>Juara Olimpiade Sains</h3>
-                    <p>Siswa SMA Lokon meraih medali emas di OSN 2025.</p>
-                    <a href="news-detail.html" class="btn" style="padding:0.4rem 1.2rem;">Baca</a>
-                </div>
-            </div>
-            <div class="card" data-aos="fade-up" data-aos-delay="200">
-                <div class="card-img">
-                    <img src="https://images.unsplash.com/photo-1526976668912-1a811878dd37?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Berita">
-                </div>
-                <div class="card-content">
-                    <h3>Workshop Robotik</h3>
-                    <p>Siswa mengikuti workshop robotik tingkat nasional.</p>
-                    <a href="news-detail.html" class="btn" style="padding:0.4rem 1.2rem;">Baca</a>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-navy mb-2">Juara Olimpiade Sains</h3>
+                    <p class="text-gray-600 mb-4">Siswa SMA Lokon meraih medali emas di OSN 2025.</p>
+                    <a href="news-detail.html" class="inline-block bg-navy text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-gold hover:text-navy transition">Baca</a>
                 </div>
             </div>
-            <div class="card" data-aos="fade-left" data-aos-delay="300">
-                <div class="card-img">
-                    <img src="https://images.unsplash.com/photo-1551972251-12070d63502a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Berita">
+            <!-- card 2 -->
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:-translate-y-4 hover:shadow-2xl transition" data-aos="fade-up" data-aos-delay="200">
+                <div class="h-56 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1526976668912-1a811878dd37?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Berita" class="w-full h-full object-cover hover:scale-110 transition duration-500">
                 </div>
-                <div class="card-content">
-                    <h3>Kegiatan Bakti Sosial</h3>
-                    <p>Pengabdian masyarakat di desa sekitar.</p>
-                    <a href="news-detail.html" class="btn" style="padding:0.4rem 1.2rem;">Baca</a>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-navy mb-2">Workshop Robotik</h3>
+                    <p class="text-gray-600 mb-4">Siswa mengikuti workshop robotik tingkat nasional.</p>
+                    <a href="news-detail.html" class="inline-block bg-navy text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-gold hover:text-navy transition">Baca</a>
+                </div>
+            </div>
+            <!-- card 3 -->
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:-translate-y-4 hover:shadow-2xl transition" data-aos="fade-left" data-aos-delay="300">
+                <div class="h-56 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1551972251-12070d63502a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Berita" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-navy mb-2">Kegiatan Bakti Sosial</h3>
+                    <p class="text-gray-600 mb-4">Pengabdian masyarakat di desa sekitar.</p>
+                    <a href="news-detail.html" class="inline-block bg-navy text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-gold hover:text-navy transition">Baca</a>
                 </div>
             </div>
         </div>
-        <div class="text-center" style="margin-top: 3rem;">
-            <a href="news.html" class="btn btn-outline">See More <i class="fas fa-arrow-right"></i></a>
+        <div class="text-center mt-12">
+            <a href="news.html" class="inline-block border-2 border-navy text-navy px-8 py-3 rounded-full font-medium hover:bg-navy hover:text-white transition">See More <i class="fas fa-arrow-right ml-1"></i></a>
         </div>
     </section>
 
     <!-- ADMISSION CTA -->
-    <section class="bg-light">
-        <div class="admission-cta" data-aos="zoom-in">
-            <h3>Penerimaan Siswa Baru</h3>
-            <p>Tahun ajaran 2026/2027 telah dibuka. Segera daftarkan putra-putri Anda untuk bergabung dengan kami.</p>
-            <a href="admission.html" class="btn">Informasi Pendaftaran</a>
-            <a href="admission.html" class="btn btn-outline" style="margin-left: 1rem;">Daftar Online</a>
+    <section class="py-20 px-5 bg-gray-100">
+        <div class="max-w-3xl mx-auto bg-white rounded-3xl shadow-xl p-8 md:p-12 text-center" data-aos="zoom-in">
+            <h3 class="text-3xl md:text-4xl font-bold text-navy mb-4">Penerimaan Siswa Baru</h3>
+            <p class="text-lg text-gray-600 mb-8">Tahun ajaran 2026/2027 telah dibuka. Segera daftarkan putra-putri Anda untuk bergabung dengan kami.</p>
+            <a href="admission.html" class="inline-block bg-navy text-white px-8 py-3 rounded-full font-medium shadow-md hover:bg-gold hover:text-navy transition mr-4">Informasi Pendaftaran</a>
+            <a href="admission.html" class="inline-block border-2 border-navy text-navy px-8 py-3 rounded-full font-medium hover:bg-navy hover:text-white transition">Daftar Online</a>
         </div>
     </section>
 
     <!-- LOKASI -->
-    <section class="bg-white">
-        <h2 class="section-title" data-aos="fade-up">Lokasi Sekolah</h2>
-        <div class="map-container" data-aos="fade-up">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.71727235333!2d124.821321874222!3d1.3460902615894803!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32876d022f56ab91%3A0x684c12f852755eea!2sSMA%20Lokon%20Santo%20Nikolaus%20Tomohon!5e0!3m2!1sid!2sid!4v1771328612797!5m2!1sid!2sid" allowfullscreen="" loading="lazy"></iframe>
-        </div>
-        <div style="text-align: center; margin-top: 2rem;">
-            <p><i class="fas fa-map-marker-alt" style="color: var(--gold);"></i> Jl. Pendidikan No. 123, Tomohon, Sulawesi Utara</p>
+    <section class="py-20 px-5 bg-white">
+        <h2 class="text-4xl font-bold text-center text-navy mb-12 relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gold after:rounded" data-aos="fade-up">Lokasi Sekolah</h2>
+        <div class="max-w-5xl mx-auto">
+            <div class="w-full h-96 rounded-2xl overflow-hidden shadow-xl" data-aos="fade-up">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.71727235333!2d124.821321874222!3d1.3460902615894803!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32876d022f56ab91%3A0x684c12f852755eea!2sSMA%20Lokon%20Santo%20Nikolaus%20Tomohon!5e0!3m2!1sid!2sid!4v1771328612797!5m2!1sid!2sid" allowfullscreen="" loading="lazy" class="w-full h-full border-0"></iframe>
+            </div>
+            <p class="text-center mt-6 text-gray-600"><i class="fas fa-map-marker-alt text-gold mr-2"></i> Jl. Pendidikan No. 123, Tomohon, Sulawesi Utara</p>
         </div>
     </section>
 
-    <!-- CONTACT (ringkas) -->
-    <section id="contact" class="bg-light">
-        <h2 class="section-title" data-aos="fade-up">Hubungi Kami</h2>
-        <div class="contact-container">
-            <div class="contact-info" data-aos="fade-right">
-                <h3>Informasi Kontak</h3>
-                <p><i class="fas fa-map-marker-alt"></i> Jl. Pendidikan No. 123, Tomohon</p>
-                <p><i class="fas fa-phone-alt"></i> (0431) 123456</p>
-                <p><i class="fas fa-envelope"></i> info@smalokon.sch.id</p>
-                <p><i class="fas fa-clock"></i> Senin - Jumat : 07.00 - 16.00</p>
-                <div class="social-links" style="justify-content: flex-start; margin-top: 2rem;">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#"><i class="fab fa-tiktok"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
+    <!-- CONTACT RINGKAS -->
+    <section class="py-20 px-5 bg-gray-100">
+        <h2 class="text-4xl font-bold text-center text-navy mb-12 relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gold after:rounded" data-aos="fade-up">Hubungi Kami</h2>
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-12">
+            <div class="flex-1" data-aos="fade-right">
+                <h3 class="text-2xl font-bold text-navy mb-6">Informasi Kontak</h3>
+                <p class="flex items-center gap-3 mb-4 text-gray-700"><i class="fas fa-map-marker-alt text-gold w-5 text-lg"></i> Jl. Pendidikan No. 123, Tomohon</p>
+                <p class="flex items-center gap-3 mb-4 text-gray-700"><i class="fas fa-phone-alt text-gold w-5 text-lg"></i> (0431) 123456</p>
+                <p class="flex items-center gap-3 mb-4 text-gray-700"><i class="fas fa-envelope text-gold w-5 text-lg"></i> info@smalokon.sch.id</p>
+                <p class="flex items-center gap-3 mb-4 text-gray-700"><i class="fas fa-clock text-gold w-5 text-lg"></i> Senin - Jumat : 07.00 - 16.00</p>
+                <div class="flex gap-3 mt-6">
+                    <a href="#" class="w-10 h-10 rounded-full bg-navy text-white flex items-center justify-center hover:bg-gold hover:text-navy transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-navy text-white flex items-center justify-center hover:bg-gold hover:text-navy transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-navy text-white flex items-center justify-center hover:bg-gold hover:text-navy transition"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-navy text-white flex items-center justify-center hover:bg-gold hover:text-navy transition"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-navy text-white flex items-center justify-center hover:bg-gold hover:text-navy transition"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
-            <div class="contact-form" data-aos="fade-left">
-                <form>
-                    <div class="form-group">
-                        <input type="text" placeholder="Nama Lengkap" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Email" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" placeholder="Subjek" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea placeholder="Pesan" required></textarea>
-                    </div>
-                    <button type="submit" class="btn">Kirim Pesan</button>
+            <div class="flex-1" data-aos="fade-left">
+                <form class="space-y-4">
+                    <input type="text" placeholder="Nama Lengkap" required class="w-full p-4 border border-gray-300 rounded-xl focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20">
+                    <input type="email" placeholder="Email" required class="w-full p-4 border border-gray-300 rounded-xl focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20">
+                    <input type="text" placeholder="Subjek" required class="w-full p-4 border border-gray-300 rounded-xl focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20">
+                    <textarea placeholder="Pesan" required rows="5" class="w-full p-4 border border-gray-300 rounded-xl focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"></textarea>
+                    <button type="submit" class="bg-navy text-white px-8 py-3 rounded-full font-medium shadow-md hover:bg-gold hover:text-navy transition">Kirim Pesan</button>
                 </form>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-logo">
-                <img src="logo/smalokon.png" alt="SMA Lokon">
-                <h2>SMA LOKON</h2>
-                
+    <footer class="bg-navy text-white py-12 px-5">
+        <div class="max-w-6xl mx-auto flex flex-wrap gap-12 justify-between mb-8">
+            <div class="flex items-center gap-4 min-w-[250px]">
+                <img src="logo/smalokon.png" alt="SMA Lokon" class="h-20 w-auto">
+                <h2 class="text-3xl font-bold">SMA LOKON</h2>
             </div>
-            <div class="footer-info">
-                <h3>Alamat</h3>
-                <p><i class="fas fa-map-marker-alt"></i> Jl. Pendidikan No. 123, Tomohon, Sulawesi Utara</p>
-                <p><i class="fas fa-phone-alt"></i> (0431) 123456</p>
-                <p><i class="fas fa-envelope"></i> info@smalokon.sch.id</p>
+            <div class="flex-1 min-w-[200px]">
+                <h3 class="text-gold text-xl mb-4 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-10 after:h-0.5 after:bg-gold pb-2">Alamat</h3>
+                <p class="flex items-center gap-3 mb-3 opacity-90"><i class="fas fa-map-marker-alt text-gold w-5"></i> Jl. Pendidikan No. 123, Tomohon, Sulawesi Utara</p>
+                <p class="flex items-center gap-3 mb-3 opacity-90"><i class="fas fa-phone-alt text-gold w-5"></i> (0431) 123456</p>
+                <p class="flex items-center gap-3 mb-3 opacity-90"><i class="fas fa-envelope text-gold w-5"></i> info@smalokon.sch.id</p>
             </div>
-            <div class="footer-info">
-                <h3>Ikuti Kami</h3>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#"><i class="fab fa-tiktok"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
+            <div class="flex-1 min-w-[200px]">
+                <h3 class="text-gold text-xl mb-4 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-10 after:h-0.5 after:bg-gold pb-2">Ikuti Kami</h3>
+                <div class="flex gap-3">
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold hover:text-navy transition border border-white/20"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold hover:text-navy transition border border-white/20"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold hover:text-navy transition border border-white/20"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold hover:text-navy transition border border-white/20"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold hover:text-navy transition border border-white/20"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
         </div>
-        <div class="footer-copyright">
+        <div class="text-center pt-6 border-t border-white/20 text-sm opacity-80">
             &copy; 2026 SMA LOKON Tomohon. All rights reserved.
         </div>
     </footer>
 
-    <!-- AOS INIT -->
+    <!-- AOS & SCRIPTS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 100
-        });
+        AOS.init({ duration: 1000, once: true, offset: 100 });
 
         // SLIDER
         let slideIndex = 0;
         const slides = document.querySelectorAll('.slide');
-
         function showSlide(n) {
             if (n >= slides.length) slideIndex = 0;
             if (n < 0) slideIndex = slides.length - 1;
-            slides.forEach(slide => slide.classList.remove('active'));
+            slides.forEach(s => s.classList.remove('active'));
             slides[slideIndex].classList.add('active');
         }
-
-        function changeSlide(direction) {
-            slideIndex += direction;
-            showSlide(slideIndex);
-        }
-
-        setInterval(() => {
-            slideIndex++;
-            showSlide(slideIndex);
-        }, 6000);
+        function changeSlide(d) { slideIndex += d; showSlide(slideIndex); }
+        setInterval(() => { slideIndex++; showSlide(slideIndex); }, 6000);
 
         // HAMBURGER MENU
         const menuToggle = document.getElementById('menuToggle');
         const nav = document.getElementById('navbar');
-
         menuToggle.addEventListener('click', () => {
-            nav.classList.toggle('active');
+            nav.classList.toggle('max-h-0');
+            nav.classList.toggle('max-h-[500px]');
             const icon = menuToggle.querySelector('i');
             icon.classList.toggle('fa-bars');
             icon.classList.toggle('fa-times');
         });
 
-        // TUTUP MENU SAAT LINK DIKLIK (MOBILE)
         const navLinks = document.querySelectorAll('#navbar ul li a');
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 if (window.innerWidth <= 768) {
-                    nav.classList.remove('active');
+                    nav.classList.add('max-h-0');
+                    nav.classList.remove('max-h-[500px]');
                     const icon = menuToggle.querySelector('i');
                     icon.classList.add('fa-bars');
                     icon.classList.remove('fa-times');
