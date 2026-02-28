@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Galeri - SMA Lokon Tomohon</title>
+    <title>Detail Berita - SMA Lokon Tomohon</title>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Google Fonts -->
@@ -68,6 +68,42 @@
             border-radius: 2px;
         }
 
+        /* BUTTONS */
+        .btn {
+            display: inline-block;
+            background: var(--navy);
+            color: white;
+            padding: 0.7rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 10px rgba(0,31,63,0.3);
+        }
+
+        .btn:hover {
+            background: var(--gold);
+            color: var(--navy);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(241,196,15,0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--navy);
+            color: var(--navy);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: var(--navy);
+            color: white;
+            transform: translateY(-3px);
+        }
+
         /* HEADER */
         header {
             background-color: var(--navy);
@@ -90,7 +126,7 @@
         }
 
         .logo-img {
-            height: 70px;
+            height: 55px;
             width: auto;
             transition: var(--transition);
         }
@@ -148,158 +184,132 @@
             border-bottom-color: var(--gold);
         }
 
-        /* PAGE HERO DENGAN BACKGROUND GAMBAR */
-        .page-hero {
-            position: relative;
-            background: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+        /* PAGE HEADER (untuk halaman detail) */
+        .page-header {
+            background: linear-gradient(135deg, var(--navy) 0%, #002b5c 100%);
             color: white;
             text-align: center;
-            padding: 6rem 1rem;
+            padding: 3rem 1rem;
             margin-bottom: 2rem;
-            isolation: isolate;
         }
 
-        .page-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 31, 63, 0.7);
-            z-index: -1;
-        }
-
-        .page-hero h1 {
-            font-size: 3.5rem;
+        .page-header h1 {
+            font-size: 2.5rem;
             margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
         }
 
-        .page-hero p {
-            font-size: 1.3rem;
-            opacity: 0.95;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* GALLERY GRID */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem;
-        }
-
-        .gallery-item {
-            position: relative;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            cursor: pointer;
-            aspect-ratio: 4/3;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .gallery-item .overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,31,63,0.9), transparent);
-            color: white;
-            padding: 1.5rem 1rem 1rem;
-            transform: translateY(100%);
-            transition: transform 0.4s ease;
-        }
-
-        .gallery-item:hover .overlay {
-            transform: translateY(0);
-        }
-
-        .gallery-item .overlay h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .gallery-item .overlay p {
-            font-size: 0.9rem;
+        .page-header p {
+            font-size: 1.1rem;
             opacity: 0.9;
         }
 
-        /* LIGHTBOX */
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
+        /* ARTICLE DETAIL */
+        .article-container {
+            max-width: 900px;
+            margin: 0 auto 4rem;
+            padding: 0 5%;
         }
 
-        .lightbox.active {
+        .article-meta {
             display: flex;
+            gap: 2rem;
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
         }
 
-        .lightbox img {
-            max-width: 90%;
-            max-height: 90%;
+        .article-meta i {
+            color: var(--gold);
+            margin-right: 0.3rem;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            color: var(--navy);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .article-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .article-content {
+            font-size: 1.1rem;
+            color: #444;
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content h2 {
+            font-size: 1.8rem;
+            color: var(--navy);
+            margin: 2rem 0 1rem;
+        }
+
+        .article-content blockquote {
+            border-left: 5px solid var(--gold);
+            background: var(--light-bg);
+            padding: 1.5rem;
+            font-style: italic;
+            margin: 2rem 0;
             border-radius: 10px;
-            box-shadow: 0 0 30px rgba(255,255,255,0.2);
         }
 
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: white;
-            font-size: 3rem;
-            cursor: pointer;
+        .back-button {
+            display: inline-block;
+            margin: 3rem 0 1rem;
+        }
+
+        /* RELATED NEWS (opsional) */
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .related-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
             transition: var(--transition);
         }
 
-        .lightbox-close:hover {
-            color: var(--gold);
+        .related-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
         }
 
-        .lightbox-prev,
-        .lightbox-next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            color: white;
-            font-size: 3rem;
-            cursor: pointer;
-            padding: 0 20px;
-            transition: var(--transition);
+        .related-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
         }
 
-        .lightbox-prev:hover,
-        .lightbox-next:hover {
-            color: var(--gold);
+        .related-card .related-content {
+            padding: 1.2rem;
         }
 
-        .lightbox-prev {
-            left: 20px;
+        .related-card h4 {
+            font-size: 1.1rem;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
         }
 
-        .lightbox-next {
-            right: 20px;
+        .related-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
         }
 
         /* FOOTER */
@@ -327,7 +337,7 @@
         .footer-logo img {
             height: 70px;
             width: auto;
-            
+            filter: brightness(0) invert(1);
         }
 
         .footer-logo h2 {
@@ -446,16 +456,16 @@
                 border-bottom: 1px solid rgba(255,255,255,0.1);
             }
 
-            .page-hero h1 {
-                font-size: 2.5rem;
+            .page-header h1 {
+                font-size: 2rem;
             }
 
-            .page-hero p {
-                font-size: 1.1rem;
+            .article-title {
+                font-size: 2rem;
             }
 
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            .article-meta {
+                gap: 1rem;
             }
 
             .footer-container {
@@ -482,18 +492,14 @@
         }
 
         @media (max-width: 480px) {
-            .page-hero h1 {
-                font-size: 2rem;
+            .article-title {
+                font-size: 1.8rem;
             }
             .logo-img {
                 height: 45px;
             }
             .school-name h1 {
                 font-size: 1.1rem;
-            }
-            .lightbox-prev,
-            .lightbox-next {
-                font-size: 2rem;
             }
         }
     </style>
@@ -502,7 +508,7 @@
     <!-- HEADER -->
     <header>
         <div class="logo-container">
-            <img src="logo/smalokon.png" alt="SMA Lokon" class="logo-img">
+            <img src="logo/web.png" alt="SMA Lokon" class="logo-img">
             <div class="school-name">
                 <h1>SMA LOKON</h1>
                 <p>ST. Nikolaus Tomohon</p>
@@ -524,88 +530,74 @@
         </nav>
     </header>
 
-    <!-- PAGE HERO -->
-    <section class="page-hero">
-        <h1 data-aos="fade-down">Galeri Sekolah</h1>
-        <p data-aos="fade-up" data-aos-delay="100">Momen dan kegiatan terbaik di SMA Lokon Tomohon</p>
+    <!-- PAGE HEADER (judul halaman) -->
+    <section class="page-header">
+        <h1 data-aos="fade-down">Detail Berita</h1>
+        <p data-aos="fade-up" data-aos-delay="100">Informasi lengkap seputar kegiatan SMA Lokon Tomohon</p>
     </section>
 
-    <!-- GALLERY GRID -->
-    <section class="bg-light" style="padding-top: 2rem;">
-        <div class="gallery-grid">
-            <!-- Item 1 -->
-            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100" onclick="openLightbox(0)">
-                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Gallery 1">
-                <div class="overlay">
-                    <h3>Kegiatan Belajar</h3>
-                    <p>Suasana kelas interaktif</p>
-                </div>
+    <!-- ARTIKEL DETAIL -->
+    <div class="article-container">
+        <a href="news.html" class="btn btn-outline back-button" data-aos="fade-right"><i class="fas fa-arrow-left"></i> Kembali ke Berita</a>
+        
+        <article>
+            <div class="article-meta" data-aos="fade-up">
+                <span><i class="fas fa-calendar-alt"></i> 25 Februari 2026</span>
+                <span><i class="fas fa-user"></i> Admin</span>
+                <span><i class="fas fa-folder"></i> Prestasi</span>
             </div>
-            <!-- Item 2 -->
-            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="150" onclick="openLightbox(1)">
-                <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Gallery 2">
-                <div class="overlay">
-                    <h3>Upacara Bendera</h3>
-                    <p>Setiap Senin pagi</p>
-                </div>
-            </div>
-            <!-- Item 3 -->
-            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200" onclick="openLightbox(2)">
-                <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Gallery 3">
-                <div class="overlay">
-                    <h3>Ekstrakurikuler</h3>
-                    <p>Futsal antar kelas</p>
-                </div>
-            </div>
-            <!-- Item 4 -->
-            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="250" onclick="openLightbox(3)">
-                <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Gallery 4">
-                <div class="overlay">
-                    <h3>Perpustakaan</h3>
-                    <p>Membaca di sudut literasi</p>
-                </div>
-            </div>
-            <!-- Item 5 -->
-            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300" onclick="openLightbox(4)">
-                <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Gallery 5">
-                <div class="overlay">
-                    <h3>Gedung Sekolah</h3>
-                    <p>Area depan sekolah</p>
-                </div>
-            </div>
-            <!-- Item 6 -->
-            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="350" onclick="openLightbox(5)">
-                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Gallery 6">
-                <div class="overlay">
-                    <h3>Praktikum</h3>
-                    <p>Kegiatan laboratorium</p>
-                </div>
-            </div>
-            <!-- Item 7 -->
-            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="400" onclick="openLightbox(6)">
-                <img src="https://images.unsplash.com/photo-1551972251-12070d63502a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Gallery 7">
-                <div class="overlay">
-                    <h3>Kegiatan Sosial</h3>
-                    <p>Bakti di masyarakat</p>
-                </div>
-            </div>
-            <!-- Item 8 -->
-            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="450" onclick="openLightbox(7)">
-                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Gallery 8">
-                <div class="overlay">
-                    <h3>Kelulusan</h3>
-                    <p>Wisuda angkatan 2025</p>
-                </div>
-            </div>
-        </div>
-    </section>
+            <h1 class="article-title" data-aos="fade-up">Siswa SMA Lokon Tomohon Raih Medali Emas Olimpiade Sains Nasional 2026</h1>
+            
+            <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Prestasi" class="article-image" data-aos="zoom-in">
 
-    <!-- LIGHTBOX -->
-    <div class="lightbox" id="lightbox">
-        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-        <span class="lightbox-prev" onclick="changeImage(-1)">&#10094;</span>
-        <img id="lightbox-img" src="" alt="">
-        <span class="lightbox-next" onclick="changeImage(1)">&#10095;</span>
+            <div class="article-content" data-aos="fade-up">
+                <p>Prestasi membanggakan kembali diraih oleh siswa SMA Lokon Tomohon. Maria Angelina, siswi kelas XII IPA 1, berhasil meraih medali emas dalam Olimpiade Sains Nasional (OSN) 2026 bidang Biologi yang diselenggarakan di Jakarta pada 20-25 Februari 2026.</p>
+
+                <p>Kompetisi tahunan ini diikuti oleh ribuan siswa terbaik dari seluruh Indonesia. Maria berhasil melewati babak penyisihan, semifinal, hingga final dengan nilai tertinggi. “Saya sangat bersyukur dan bangga bisa mengharumkan nama sekolah dan daerah. Semua ini berkat dukungan guru, orang tua, dan teman-teman,” ujar Maria dengan wajah sumringah.</p>
+
+                <h2>Perjalanan Menuju Juara</h2>
+                <p>Selama persiapan, Maria dibimbing secara intensif oleh tim guru biologi SMA Lokon. Ia menjalani latihan soal, praktikum, dan simulasi ujian setiap minggu. Kepala Sekolah, Ibu Dra. Theresia Sumilat, M.Pd., mengungkapkan kebanggaannya. “Kami sangat bangga dengan prestasi Maria. Ini membuktikan bahwa kualitas pendidikan di SMA Lokon mampu bersaing di tingkat nasional.”</p>
+
+                <blockquote>
+                    “Pendidikan adalah senjata paling ampuh untuk mengubah dunia.” – Nelson Mandela
+                </blockquote>
+
+                <p>Prestasi ini diharapkan menjadi motivasi bagi siswa lain untuk terus berprestasi. SMA Lokon berkomitmen untuk terus mendukung pengembangan bakat siswa melalui program-program unggulan dan pembinaan intensif.</p>
+
+                <p>Selamat kepada Maria Angelina dan tim guru pembimbing! Semoga sukses selalu.</p>
+            </div>
+        </article>
+
+        <!-- BERITA TERKAIT (opsional) -->
+        <section style="margin-top: 4rem;">
+            <h2 class="section-title" data-aos="fade-up">Berita Lainnya</h2>
+            <div class="related-grid">
+                <div class="related-card" data-aos="fade-right" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1526976668912-1a811878dd37?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Berita">
+                    <div class="related-content">
+                        <h4>Workshop Robotik 2026</h4>
+                        <p>Siswa antusias belajar merakit robot.</p>
+                        <a href="news-detail.html" class="btn" style="padding:0.3rem 1rem;">Baca</a>
+                    </div>
+                </div>
+                <div class="related-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1551972251-12070d63502a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Berita">
+                    <div class="related-content">
+                        <h4>Bakti Sosial Paskah</h4>
+                        <p>Berbagi kasih dengan masyarakat.</p>
+                        <a href="news-detail.html" class="btn" style="padding:0.3rem 1rem;">Baca</a>
+                    </div>
+                </div>
+                <div class="related-card" data-aos="fade-left" data-aos-delay="300">
+                    <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Berita">
+                    <div class="related-content">
+                        <h4>Juara Futsal Se-Kota</h4>
+                        <p>Tim futsal raih juara 1.</p>
+                        <a href="news-detail.html" class="btn" style="padding:0.3rem 1rem;">Baca</a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
     <!-- FOOTER -->
@@ -668,56 +660,6 @@
                     icon.classList.remove('fa-times');
                 }
             });
-        });
-
-        // LIGHTBOX
-        const images = [
-            'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1551972251-12070d63502a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
-        ];
-
-        let currentIndex = 0;
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-
-        function openLightbox(index) {
-            currentIndex = index;
-            lightboxImg.src = images[currentIndex];
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeLightbox() {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        function changeImage(direction) {
-            currentIndex += direction;
-            if (currentIndex < 0) currentIndex = images.length - 1;
-            if (currentIndex >= images.length) currentIndex = 0;
-            lightboxImg.src = images[currentIndex];
-        }
-
-        // Event listeners untuk lightbox
-        lightbox.addEventListener('click', function(e) {
-            if (e.target === lightbox) {
-                closeLightbox();
-            }
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (lightbox.classList.contains('active')) {
-                if (e.key === 'Escape') closeLightbox();
-                if (e.key === 'ArrowLeft') changeImage(-1);
-                if (e.key === 'ArrowRight') changeImage(1);
-            }
         });
     </script>
 </body>
