@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Berita - Admin SMA Lokon</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#001f3f',
+                        gold: '#f1c40f',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .sidebar-scroll::-webkit-scrollbar { width:6px; } 
+        .sidebar-scroll::-webkit-scrollbar-track { background:#f1f1f1; } 
+        .sidebar-scroll::-webkit-scrollbar-thumb { background:#001f3f; border-radius:10px; }
+    </style>
+</head>
+<body class="font-[Poppins] bg-gray-100">
+
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar (sama) -->
+        <aside class="w-64 bg-navy text-white flex flex-col">
+            <div class="p-5 border-b border-white/10">
+                <div class="flex items-center gap-3">
+                    <img src="logo/smalokon.png" alt="SMA Lokon" class="h-10 w-auto">
+                    <h2 class="text-xl font-bold">Admin Panel</h2>
+                </div>
+            </div>
+            <nav class="flex-1 overflow-y-auto py-4 sidebar-scroll">
+                <ul class="space-y-1 px-3">
+                    <li><a href="admin-dashboard.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10 transition"><i class="fas fa-tachometer-alt w-5"></i><span>Dashboard</span></a></li>
+                    <li><a href="admin-berita.html" class="flex items-center gap-3 px-4 py-3 rounded-lg bg-gold/10 text-gold font-medium"><i class="fas fa-newspaper w-5"></i><span>Berita</span></a></li>
+                    <li><a href="admin-fasilitas.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10 transition"><i class="fas fa-building w-5"></i><span>Fasilitas</span></a></li>
+                    <li><a href="admin-galeri.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10 transition"><i class="fas fa-images w-5"></i><span>Galeri</span></a></li>
+                    <li><a href="admin-admission.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10 transition"><i class="fas fa-graduation-cap w-5"></i><span>Penerimaan</span></a></li>
+                    <li><a href="admin-tentang.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10 transition"><i class="fas fa-info-circle w-5"></i><span>Tentang</span></a></li>
+                    <li><a href="admin-kontak.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10 transition"><i class="fas fa-envelope w-5"></i><span>Kontak</span></a></li>
+                    <li class="pt-4 mt-4 border-t border-white/10"><a href="admin-login.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-red-500/20 text-red-300"><i class="fas fa-sign-out-alt w-5"></i><span>Logout</span></a></li>
+                </ul>
+            </nav>
+            <div class="p-4 text-xs text-white/60 border-t border-white/10">&copy; 2026 SMA Lokon</div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto p-6">
+            <div class="mb-4">
+                <a href="admin-berita.html" class="text-navy hover:text-gold transition flex items-center gap-2"><i class="fas fa-arrow-left"></i> Kembali ke Daftar Berita</a>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <h1 class="text-2xl font-bold text-navy mb-6">Edit Berita</h1>
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Judul</label>
+                        <input type="text" value="Siswa SMA Lokon Tomohon Raih Medali Emas Olimpiade Sains Nasional 2026" class="w-full border rounded-lg px-4 py-2">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Kategori</label>
+                            <select class="w-full border rounded-lg px-4 py-2">
+                                <option selected>Prestasi</option>
+                                <option>Kegiatan</option>
+                                <option>Sosial</option>
+                                <option>Pengumuman</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Tanggal</label>
+                            <input type="date" value="2026-02-25" class="w-full border rounded-lg px-4 py-2">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Status</label>
+                        <select class="w-full border rounded-lg px-4 py-2">
+                            <option selected>Published</option>
+                            <option>Draft</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Konten</label>
+                        <textarea rows="8" class="w-full border rounded-lg px-4 py-2">Prestasi membanggakan kembali diraih oleh siswa SMA Lokon Tomohon. Maria Angelina, siswi kelas XII IPA 1, berhasil meraih medali emas dalam Olimpiade Sains Nasional (OSN) 2026 bidang Biologi yang diselenggarakan di Jakarta pada 20-25 Februari 2026.
+
+Kompetisi tahunan ini diikuti oleh ribuan siswa terbaik dari seluruh Indonesia. Maria berhasil melewati babak penyisihan, semifinal, hingga final dengan nilai tertinggi. “Saya sangat bersyukur dan bangga bisa mengharumkan nama sekolah dan daerah. Semua ini berkat dukungan guru, orang tua, dan teman-teman,” ujar Maria dengan wajah sumringah.
+
+Selama persiapan, Maria dibimbing secara intensif oleh tim guru biologi SMA Lokon. Ia menjalani latihan soal, praktikum, dan simulasi ujian setiap minggu. Kepala Sekolah, Ibu Dra. Theresia Sumilat, M.Pd., mengungkapkan kebanggaannya. “Kami sangat bangga dengan prestasi Maria. Ini membuktikan bahwa kualitas pendidikan di SMA Lokon mampu bersaing di tingkat nasional.”</textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Gambar</label>
+                        <div class="flex items-center gap-3">
+                            <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?w=100&h=100&fit=crop" class="w-16 h-16 rounded object-cover">
+                            <input type="file" class="border rounded-lg px-4 py-2">
+                        </div>
+                    </div>
+                    <div class="flex gap-3 pt-4">
+                        <button type="submit" class="bg-navy text-white px-6 py-2 rounded-lg hover:bg-gold hover:text-navy transition">Simpan Perubahan</button>
+                        <a href="admin-berita.html" class="border border-gray-300 px-6 py-2 rounded-lg hover:bg-gray-100 transition">Batal</a>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

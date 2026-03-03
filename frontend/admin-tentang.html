@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Tentang - SMA Lokon Tomohon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={theme:{extend:{colors:{navy:'#001f3f',gold:'#f1c40f',}}}}</script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>.sidebar-scroll::-webkit-scrollbar { width:6px; } .sidebar-scroll::-webkit-scrollbar-track { background:#f1f1f1; } .sidebar-scroll::-webkit-scrollbar-thumb { background:#001f3f; border-radius:10px; }</style>
+</head>
+<body class="font-[Poppins] bg-gray-100">
+    <div class="flex h-screen overflow-hidden">
+        <aside class="w-64 bg-navy text-white flex flex-col">
+            <div class="p-5 border-b border-white/10"><div class="flex items-center gap-3"><img src="logo/smalokon.png" alt="SMA Lokon" class="h-10 w-auto "><h2 class="text-xl font-bold">Admin Panel</h2></div></div>
+            <nav class="flex-1 overflow-y-auto py-4 sidebar-scroll">
+                <ul class="space-y-1 px-3">
+                    <li><a href="admin-dashboard.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10"><i class="fas fa-tachometer-alt w-5"></i><span>Dashboard</span></a></li>
+                    <li><a href="admin-berita.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10"><i class="fas fa-newspaper w-5"></i><span>Berita</span></a></li>
+                    <li><a href="admin-fasilitas.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10"><i class="fas fa-building w-5"></i><span>Fasilitas</span></a></li>
+                    <li><a href="admin-galeri.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10"><i class="fas fa-images w-5"></i><span>Galeri</span></a></li>
+                    <li><a href="admin-admission.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10"><i class="fas fa-graduation-cap w-5"></i><span>Penerimaan</span></a></li>
+                    <li><a href="admin-tentang.html" class="flex items-center gap-3 px-4 py-3 rounded-lg bg-gold/10 text-gold font-medium"><i class="fas fa-info-circle w-5"></i><span>Tentang</span></a></li>
+                    <li><a href="admin-kontak.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10"><i class="fas fa-envelope w-5"></i><span>Kontak</span></a></li>
+                    <li class="pt-4 mt-4 border-t border-white/10"><a href="admin-login.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-red-500/20 text-red-300"><i class="fas fa-sign-out-alt w-5"></i><span>Logout</span></a></li>
+                </ul>
+            </nav>
+            <div class="p-4 text-xs text-white/60 border-t border-white/10">&copy; 2026 SMA Lokon</div>
+        </aside>
+        <main class="flex-1 overflow-y-auto p-6">
+            <h1 class="text-3xl font-bold text-navy mb-6">Kelola Halaman Tentang</h1>
+
+            <!-- Visi -->
+            <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+                <h2 class="text-xl font-bold text-navy mb-4 flex items-center gap-2"><i class="fas fa-eye text-gold"></i> Visi</h2>
+                <textarea rows="3" class="w-full border rounded-lg px-4 py-2">Menjadi lembaga pendidikan unggulan yang membentuk generasi beriman, cerdas, dan berkarakter berdasarkan nilai-nilai Kristiani.</textarea>
+                <button class="mt-3 bg-navy text-white px-4 py-2 rounded-lg hover:bg-gold hover:text-navy transition">Simpan Visi</button>
+            </div>
+
+            <!-- Misi -->
+            <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+                <h2 class="text-xl font-bold text-navy mb-4 flex items-center gap-2"><i class="fas fa-bullseye text-gold"></i> Misi</h2>
+                <textarea rows="3" class="w-full border rounded-lg px-4 py-2">Menyelenggarakan pembelajaran berkualitas, membina karakter Kristiani, mengembangkan potensi siswa secara holistik, dan menciptakan lingkungan sekolah yang aman dan menyenangkan.</textarea>
+                <button class="mt-3 bg-navy text-white px-4 py-2 rounded-lg hover:bg-gold hover:text-navy transition">Simpan Misi</button>
+            </div>
+
+            <!-- Tujuan -->
+            <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+                <h2 class="text-xl font-bold text-navy mb-4 flex items-center gap-2"><i class="fas fa-flag-checkered text-gold"></i> Tujuan</h2>
+                <textarea rows="3" class="w-full border rounded-lg px-4 py-2">Menghasilkan lulusan yang beriman, cerdas, terampil, dan siap melanjutkan pendidikan ke jenjang yang lebih tinggi serta menjadi pemimpin masa depan.</textarea>
+                <button class="mt-3 bg-navy text-white px-4 py-2 rounded-lg hover:bg-gold hover:text-navy transition">Simpan Tujuan</button>
+            </div>
+
+            
+        </main>
+    </div>
+</body>
+</html>

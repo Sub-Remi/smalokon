@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - SMA Lokon Tomohon</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#001f3f',
+                        gold: '#f1c40f',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom scrollbar for sidebar */
+        .sidebar-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .sidebar-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .sidebar-scroll::-webkit-scrollbar-thumb {
+            background: #001f3f;
+            border-radius: 10px;
+        }
+        .sidebar-scroll::-webkit-scrollbar-thumb:hover {
+            background: #f1c40f;
+        }
+    </style>
+</head>
+<body class="font-[Poppins] bg-gray-100">
+
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-navy text-white flex flex-col">
+            <div class="p-5 border-b border-white/10">
+                <div class="flex items-center gap-3">
+                    <img src="logo/smalokon.png" alt="SMA Lokon" class="h-10 w-auto">
+                    <h2 class="text-xl font-bold">Admin Panel</h2>
+                </div>
+            </div>
+            <nav class="flex-1 overflow-y-auto py-4 sidebar-scroll">
+                <ul class="space-y-1 px-3">
+                    <li>
+                        <a href="admin-dashboard.html" class="flex items-center gap-3 px-4 py-3 rounded-lg bg-gold/10 text-gold font-medium">
+                            <i class="fas fa-tachometer-alt w-5"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="admin-berita.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10 transition">
+                            <i class="fas fa-newspaper w-5"></i>
+                            <span>Berita</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="admin-fasilitas.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10 transition">
+                            <i class="fas fa-building w-5"></i>
+                            <span>Fasilitas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="admin-galeri.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10 transition">
+                            <i class="fas fa-images w-5"></i>
+                            <span>Galeri</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="admin-admission.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10 transition">
+                            <i class="fas fa-graduation-cap w-5"></i>
+                            <span>Penerimaan</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="admin-tentang.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10 transition">
+                            <i class="fas fa-info-circle w-5"></i>
+                            <span>Tentang</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="admin-kontak.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10 transition">
+                            <i class="fas fa-envelope w-5"></i>
+                            <span>Kontak</span>
+                        </a>
+                    </li>
+                    <li class="pt-4 mt-4 border-t border-white/10">
+                        <a href="admin-login.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-red-500/20 text-red-300 hover:text-red-200 transition">
+                            <i class="fas fa-sign-out-alt w-5"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="p-4 text-xs text-white/60 border-t border-white/10">
+                &copy; 2026 SMA Lokon
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto p-6">
+            <!-- Header -->
+            <div class="flex justify-between items-center mb-8">
+                <h1 class="text-3xl font-bold text-navy">Dashboard</h1>
+                <div class="flex items-center gap-4">
+                    <span class="text-gray-600">Halo, Admin</span>
+                    <img src="https://ui-avatars.com/api/?name=Admin&background=001f3f&color=fff&size=40" alt="Avatar" class="w-10 h-10 rounded-full border-2 border-gold">
+                </div>
+            </div>
+
+            <!-- Stat Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-gold">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-sm">Total Berita</p>
+                            <p class="text-3xl font-bold text-navy">24</p>
+                        </div>
+                        <div class="w-12 h-12 bg-gold/20 rounded-full flex items-center justify-center text-gold text-2xl">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-gold">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-sm">Fasilitas</p>
+                            <p class="text-3xl font-bold text-navy">12</p>
+                        </div>
+                        <div class="w-12 h-12 bg-gold/20 rounded-full flex items-center justify-center text-gold text-2xl">
+                            <i class="fas fa-building"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-gold">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-sm">Foto Galeri</p>
+                            <p class="text-3xl font-bold text-navy">48</p>
+                        </div>
+                        <div class="w-12 h-12 bg-gold/20 rounded-full flex items-center justify-center text-gold text-2xl">
+                            <i class="fas fa-images"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-gold">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-sm">Pendaftar</p>
+                            <p class="text-3xl font-bold text-navy">156</p>
+                        </div>
+                        <div class="w-12 h-12 bg-gold/20 rounded-full flex items-center justify-center text-gold text-2xl">
+                            <i class="fas fa-users"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section: Berita Terbaru -->
+            <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-bold text-navy flex items-center gap-2"><i class="fas fa-newspaper text-gold"></i> Berita Terbaru</h2>
+                    <button class="bg-navy text-white px-4 py-2 rounded-lg text-sm hover:bg-gold hover:text-navy transition flex items-center gap-2"><i class="fas fa-plus"></i> Tambah Berita</button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left">
+                        <thead class="bg-gray-100 text-navy">
+                            <tr>
+                                <th class="px-4 py-3 rounded-l-lg">Judul</th>
+                                <th class="px-4 py-3">Tanggal</th>
+                                <th class="px-4 py-3">Kategori</th>
+                                <th class="px-4 py-3 rounded-r-lg">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y">
+                            <tr>
+                                <td class="px-4 py-3">Siswa Raih Medali Emas OSN</td>
+                                <td class="px-4 py-3">25 Feb 2026</td>
+                                <td class="px-4 py-3">Prestasi</td>
+                                <td class="px-4 py-3 space-x-2">
+                                    <button class="text-blue-600 hover:text-blue-800"><i class="fas fa-edit"></i></button>
+                                    <button class="text-red-600 hover:text-red-800"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3">Workshop Robotik</td>
+                                <td class="px-4 py-3">10 Feb 2026</td>
+                                <td class="px-4 py-3">Kegiatan</td>
+                                <td class="px-4 py-3 space-x-2">
+                                    <button class="text-blue-600 hover:text-blue-800"><i class="fas fa-edit"></i></button>
+                                    <button class="text-red-600 hover:text-red-800"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3">Bakti Sosial</td>
+                                <td class="px-4 py-3">5 Feb 2026</td>
+                                <td class="px-4 py-3">Sosial</td>
+                                <td class="px-4 py-3 space-x-2">
+                                    <button class="text-blue-600 hover:text-blue-800"><i class="fas fa-edit"></i></button>
+                                    <button class="text-red-600 hover:text-red-800"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-right mt-4">
+                    <a href="#" class="text-navy hover:text-gold transition">Lihat semua <i class="fas fa-arrow-right ml-1"></i></a>
+                </div>
+            </div>
+
+            <!-- Section: Fasilitas -->
+            <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-bold text-navy flex items-center gap-2"><i class="fas fa-building text-gold"></i> Fasilitas</h2>
+                    <button class="bg-navy text-white px-4 py-2 rounded-lg text-sm hover:bg-gold hover:text-navy transition flex items-center gap-2"><i class="fas fa-plus"></i> Tambah Fasilitas</button>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="border rounded-lg p-3 flex items-center justify-between">
+                        <span class="font-medium">Laboratorium</span>
+                        <div>
+                            <button class="text-blue-600 hover:text-blue-800 mr-2"><i class="fas fa-edit"></i></button>
+                            <button class="text-red-600 hover:text-red-800"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                    <div class="border rounded-lg p-3 flex items-center justify-between">
+                        <span class="font-medium">Perpustakaan</span>
+                        <div>
+                            <button class="text-blue-600 hover:text-blue-800 mr-2"><i class="fas fa-edit"></i></button>
+                            <button class="text-red-600 hover:text-red-800"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                    <div class="border rounded-lg p-3 flex items-center justify-between">
+                        <span class="font-medium">Lapangan</span>
+                        <div>
+                            <button class="text-blue-600 hover:text-blue-800 mr-2"><i class="fas fa-edit"></i></button>
+                            <button class="text-red-600 hover:text-red-800"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                    <div class="border rounded-lg p-3 flex items-center justify-between">
+                        <span class="font-medium">Ruang Kelas</span>
+                        <div>
+                            <button class="text-blue-600 hover:text-blue-800 mr-2"><i class="fas fa-edit"></i></button>
+                            <button class="text-red-600 hover:text-red-800"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section: Galeri -->
+            <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-bold text-navy flex items-center gap-2"><i class="fas fa-images text-gold"></i> Galeri</h2>
+                    <button class="bg-navy text-white px-4 py-2 rounded-lg text-sm hover:bg-gold hover:text-navy transition flex items-center gap-2"><i class="fas fa-upload"></i> Unggah Foto</button>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+                    <div class="relative group">
+                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=150&h=150&fit=crop" class="w-full h-24 object-cover rounded-lg">
+                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 rounded-lg">
+                            <button class="text-white hover:text-gold"><i class="fas fa-edit"></i></button>
+                            <button class="text-white hover:text-red-500"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=150&h=150&fit=crop" class="w-full h-24 object-cover rounded-lg">
+                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 rounded-lg">
+                            <button class="text-white hover:text-gold"><i class="fas fa-edit"></i></button>
+                            <button class="text-white hover:text-red-500"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=150&h=150&fit=crop" class="w-full h-24 object-cover rounded-lg">
+                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 rounded-lg">
+                            <button class="text-white hover:text-gold"><i class="fas fa-edit"></i></button>
+                            <button class="text-white hover:text-red-500"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=150&h=150&fit=crop" class="w-full h-24 object-cover rounded-lg">
+                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 rounded-lg">
+                            <button class="text-white hover:text-gold"><i class="fas fa-edit"></i></button>
+                            <button class="text-white hover:text-red-500"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=150&h=150&fit=crop" class="w-full h-24 object-cover rounded-lg">
+                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 rounded-lg">
+                            <button class="text-white hover:text-gold"><i class="fas fa-edit"></i></button>
+                            <button class="text-white hover:text-red-500"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=150&h=150&fit=crop" class="w-full h-24 object-cover rounded-lg">
+                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 rounded-lg">
+                            <button class="text-white hover:text-gold"><i class="fas fa-edit"></i></button>
+                            <button class="text-white hover:text-red-500"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section: Pesan Kontak -->
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <h2 class="text-xl font-bold text-navy flex items-center gap-2 mb-4"><i class="fas fa-envelope text-gold"></i> Pesan Kontak Terbaru</h2>
+                <div class="space-y-3">
+                    <div class="border-b pb-3 flex justify-between items-center">
+                        <div>
+                            <p class="font-semibold">John Doe</p>
+                            <p class="text-sm text-gray-600">Tanya informasi pendaftaran</p>
+                        </div>
+                        <span class="text-sm text-gray-500">2 jam lalu</span>
+                    </div>
+                    <div class="border-b pb-3 flex justify-between items-center">
+                        <div>
+                            <p class="font-semibold">Maria Wong</p>
+                            <p class="text-sm text-gray-600">Konfirmasi jadwal tes</p>
+                        </div>
+                        <span class="text-sm text-gray-500">5 jam lalu</span>
+                    </div>
+                    <div class="border-b pb-3 flex justify-between items-center">
+                        <div>
+                            <p class="font-semibold">Antonius</p>
+                            <p class="text-sm text-gray-600">Kerjasama kegiatan</p>
+                        </div>
+                        <span class="text-sm text-gray-500">Kemarin</span>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Simple modal simulation (not functional, just placeholder) -->
+    <script>
+        // For demo purposes, we don't implement actual CRUD.
+        console.log('Admin Dashboard - UI only');
+    </script>
+</body>
+</html>
