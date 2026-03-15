@@ -1,0 +1,1 @@
+ketik 'npm install' klo mau se jalan backend
