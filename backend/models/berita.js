@@ -8,8 +8,12 @@ const Berita = sequelize.define('Berita', {
     primaryKey: true,
   },
   judul: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(200),
     allowNull: false,
+  },
+  slug: {
+    type: DataTypes.STRING(200),
+    unique: true,
   },
   kategori: {
     type: DataTypes.ENUM('Prestasi', 'Kegiatan', 'Sosial', 'Pengumuman'),
@@ -18,6 +22,7 @@ const Berita = sequelize.define('Berita', {
   tanggal: {
     type: DataTypes.DATEONLY,
     allowNull: false,
+    defaultValue: DataTypes.NOW,
   },
   konten: {
     type: DataTypes.TEXT,
@@ -32,12 +37,23 @@ const Berita = sequelize.define('Berita', {
     defaultValue: 'Draft',
   },
   penulis: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(100),
     defaultValue: 'Admin',
+  },
+  views: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
   },
 }, {
   tableName: 'berita',
-  timestamps: true, // createdAt, updatedAt
+  timestamps: true,
+});
+
+// Hook untuk membuat slug dari judul
+Berita.beforeCreate(async (berita) => {
+  if (berita.judul) {
+    berita.slug = berita.judul.toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g, '-');
+  }
 });
 
 module.exports = Berita;
