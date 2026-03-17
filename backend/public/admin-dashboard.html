@@ -108,24 +108,24 @@
             </div>
         </aside>
 
-        <!-- Main Content -->
+<!-- Main Content -->
         <main class="flex-1 overflow-y-auto p-6">
             <!-- Header -->
             <div class="flex justify-between items-center mb-8">
                 <h1 class="text-3xl font-bold text-navy">Dashboard</h1>
                 <div class="flex items-center gap-4">
-                    <span class="text-gray-600">Halo, Admin</span>
+                    <span class="text-gray-600" id="adminName">Halo, Admin</span>
                     <img src="https://ui-avatars.com/api/?name=Admin&background=001f3f&color=fff&size=40" alt="Avatar" class="w-10 h-10 rounded-full border-2 border-gold">
                 </div>
             </div>
 
-            <!-- Stat Cards -->
+            <!-- Stat Cards (tambahkan id pada setiap angka) -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                 <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-gold">
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-gray-500 text-sm">Total Berita</p>
-                            <p class="text-3xl font-bold text-navy">24</p>
+                            <p class="text-3xl font-bold text-navy" id="totalBerita">0</p>
                         </div>
                         <div class="w-12 h-12 bg-gold/20 rounded-full flex items-center justify-center text-gold text-2xl">
                             <i class="fas fa-newspaper"></i>
@@ -136,7 +136,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-gray-500 text-sm">Fasilitas</p>
-                            <p class="text-3xl font-bold text-navy">12</p>
+                            <p class="text-3xl font-bold text-navy" id="totalFasilitas">0</p>
                         </div>
                         <div class="w-12 h-12 bg-gold/20 rounded-full flex items-center justify-center text-gold text-2xl">
                             <i class="fas fa-building"></i>
@@ -147,7 +147,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-gray-500 text-sm">Foto Galeri</p>
-                            <p class="text-3xl font-bold text-navy">48</p>
+                            <p class="text-3xl font-bold text-navy" id="totalGaleri">0</p>
                         </div>
                         <div class="w-12 h-12 bg-gold/20 rounded-full flex items-center justify-center text-gold text-2xl">
                             <i class="fas fa-images"></i>
@@ -158,7 +158,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-gray-500 text-sm">Pendaftar</p>
-                            <p class="text-3xl font-bold text-navy">156</p>
+                            <p class="text-3xl font-bold text-navy" id="totalPendaftar">0</p>
                         </div>
                         <div class="w-12 h-12 bg-gold/20 rounded-full flex items-center justify-center text-gold text-2xl">
                             <i class="fas fa-users"></i>
@@ -171,7 +171,7 @@
             <div class="bg-white rounded-xl shadow-md p-6 mb-8">
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-xl font-bold text-navy flex items-center gap-2"><i class="fas fa-newspaper text-gold"></i> Berita Terbaru</h2>
-                    <button class="bg-navy text-white px-4 py-2 rounded-lg text-sm hover:bg-gold hover:text-navy transition flex items-center gap-2"><i class="fas fa-plus"></i> Tambah Berita</button>
+                    <a href="admin-berita.html" class="bg-navy text-white px-4 py-2 rounded-lg text-sm hover:bg-gold hover:text-navy transition flex items-center gap-2"><i class="fas fa-plus"></i> Tambah Berita</a>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm text-left">
@@ -183,39 +183,13 @@
                                 <th class="px-4 py-3 rounded-r-lg">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y">
-                            <tr>
-                                <td class="px-4 py-3">Siswa Raih Medali Emas OSN</td>
-                                <td class="px-4 py-3">25 Feb 2026</td>
-                                <td class="px-4 py-3">Prestasi</td>
-                                <td class="px-4 py-3 space-x-2">
-                                    <button class="text-blue-600 hover:text-blue-800"><i class="fas fa-edit"></i></button>
-                                    <button class="text-red-600 hover:text-red-800"><i class="fas fa-trash"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-4 py-3">Workshop Robotik</td>
-                                <td class="px-4 py-3">10 Feb 2026</td>
-                                <td class="px-4 py-3">Kegiatan</td>
-                                <td class="px-4 py-3 space-x-2">
-                                    <button class="text-blue-600 hover:text-blue-800"><i class="fas fa-edit"></i></button>
-                                    <button class="text-red-600 hover:text-red-800"><i class="fas fa-trash"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-4 py-3">Bakti Sosial</td>
-                                <td class="px-4 py-3">5 Feb 2026</td>
-                                <td class="px-4 py-3">Sosial</td>
-                                <td class="px-4 py-3 space-x-2">
-                                    <button class="text-blue-600 hover:text-blue-800"><i class="fas fa-edit"></i></button>
-                                    <button class="text-red-600 hover:text-red-800"><i class="fas fa-trash"></i></button>
-                                </td>
-                            </tr>
+                        <tbody id="beritaTerbaru" class="divide-y">
+                            <!-- Akan diisi oleh JavaScript -->
                         </tbody>
                     </table>
                 </div>
                 <div class="text-right mt-4">
-                    <a href="#" class="text-navy hover:text-gold transition">Lihat semua <i class="fas fa-arrow-right ml-1"></i></a>
+                    <a href="admin-berita.html" class="text-navy hover:text-gold transition">Lihat semua <i class="fas fa-arrow-right ml-1"></i></a>
                 </div>
             </div>
 
@@ -223,37 +197,10 @@
             <div class="bg-white rounded-xl shadow-md p-6 mb-8">
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-xl font-bold text-navy flex items-center gap-2"><i class="fas fa-building text-gold"></i> Fasilitas</h2>
-                    <button class="bg-navy text-white px-4 py-2 rounded-lg text-sm hover:bg-gold hover:text-navy transition flex items-center gap-2"><i class="fas fa-plus"></i> Tambah Fasilitas</button>
+                    <a href="admin-fasilitas.html" class="bg-navy text-white px-4 py-2 rounded-lg text-sm hover:bg-gold hover:text-navy transition flex items-center gap-2"><i class="fas fa-plus"></i> Tambah Fasilitas</a>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div class="border rounded-lg p-3 flex items-center justify-between">
-                        <span class="font-medium">Laboratorium</span>
-                        <div>
-                            <button class="text-blue-600 hover:text-blue-800 mr-2"><i class="fas fa-edit"></i></button>
-                            <button class="text-red-600 hover:text-red-800"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </div>
-                    <div class="border rounded-lg p-3 flex items-center justify-between">
-                        <span class="font-medium">Perpustakaan</span>
-                        <div>
-                            <button class="text-blue-600 hover:text-blue-800 mr-2"><i class="fas fa-edit"></i></button>
-                            <button class="text-red-600 hover:text-red-800"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </div>
-                    <div class="border rounded-lg p-3 flex items-center justify-between">
-                        <span class="font-medium">Lapangan</span>
-                        <div>
-                            <button class="text-blue-600 hover:text-blue-800 mr-2"><i class="fas fa-edit"></i></button>
-                            <button class="text-red-600 hover:text-red-800"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </div>
-                    <div class="border rounded-lg p-3 flex items-center justify-between">
-                        <span class="font-medium">Ruang Kelas</span>
-                        <div>
-                            <button class="text-blue-600 hover:text-blue-800 mr-2"><i class="fas fa-edit"></i></button>
-                            <button class="text-red-600 hover:text-red-800"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </div>
+                <div id="fasilitasGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- Akan diisi oleh JavaScript -->
                 </div>
             </div>
 
@@ -261,89 +208,187 @@
             <div class="bg-white rounded-xl shadow-md p-6 mb-8">
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-xl font-bold text-navy flex items-center gap-2"><i class="fas fa-images text-gold"></i> Galeri</h2>
-                    <button class="bg-navy text-white px-4 py-2 rounded-lg text-sm hover:bg-gold hover:text-navy transition flex items-center gap-2"><i class="fas fa-upload"></i> Unggah Foto</button>
+                    <a href="admin-galeri.html" class="bg-navy text-white px-4 py-2 rounded-lg text-sm hover:bg-gold hover:text-navy transition flex items-center gap-2"><i class="fas fa-upload"></i> Unggah Foto</a>
                 </div>
-                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
-                    <div class="relative group">
-                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=150&h=150&fit=crop" class="w-full h-24 object-cover rounded-lg">
-                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 rounded-lg">
-                            <button class="text-white hover:text-gold"><i class="fas fa-edit"></i></button>
-                            <button class="text-white hover:text-red-500"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </div>
-                    <div class="relative group">
-                        <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=150&h=150&fit=crop" class="w-full h-24 object-cover rounded-lg">
-                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 rounded-lg">
-                            <button class="text-white hover:text-gold"><i class="fas fa-edit"></i></button>
-                            <button class="text-white hover:text-red-500"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </div>
-                    <div class="relative group">
-                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=150&h=150&fit=crop" class="w-full h-24 object-cover rounded-lg">
-                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 rounded-lg">
-                            <button class="text-white hover:text-gold"><i class="fas fa-edit"></i></button>
-                            <button class="text-white hover:text-red-500"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </div>
-                    <div class="relative group">
-                        <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=150&h=150&fit=crop" class="w-full h-24 object-cover rounded-lg">
-                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 rounded-lg">
-                            <button class="text-white hover:text-gold"><i class="fas fa-edit"></i></button>
-                            <button class="text-white hover:text-red-500"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </div>
-                    <div class="relative group">
-                        <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=150&h=150&fit=crop" class="w-full h-24 object-cover rounded-lg">
-                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 rounded-lg">
-                            <button class="text-white hover:text-gold"><i class="fas fa-edit"></i></button>
-                            <button class="text-white hover:text-red-500"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </div>
-                    <div class="relative group">
-                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=150&h=150&fit=crop" class="w-full h-24 object-cover rounded-lg">
-                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 rounded-lg">
-                            <button class="text-white hover:text-gold"><i class="fas fa-edit"></i></button>
-                            <button class="text-white hover:text-red-500"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </div>
+                <div id="galeriGrid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+                    <!-- Akan diisi oleh JavaScript -->
                 </div>
             </div>
 
             <!-- Section: Pesan Kontak -->
             <div class="bg-white rounded-xl shadow-md p-6">
                 <h2 class="text-xl font-bold text-navy flex items-center gap-2 mb-4"><i class="fas fa-envelope text-gold"></i> Pesan Kontak Terbaru</h2>
-                <div class="space-y-3">
-                    <div class="border-b pb-3 flex justify-between items-center">
-                        <div>
-                            <p class="font-semibold">John Doe</p>
-                            <p class="text-sm text-gray-600">Tanya informasi pendaftaran</p>
-                        </div>
-                        <span class="text-sm text-gray-500">2 jam lalu</span>
-                    </div>
-                    <div class="border-b pb-3 flex justify-between items-center">
-                        <div>
-                            <p class="font-semibold">Maria Wong</p>
-                            <p class="text-sm text-gray-600">Konfirmasi jadwal tes</p>
-                        </div>
-                        <span class="text-sm text-gray-500">5 jam lalu</span>
-                    </div>
-                    <div class="border-b pb-3 flex justify-between items-center">
-                        <div>
-                            <p class="font-semibold">Antonius</p>
-                            <p class="text-sm text-gray-600">Kerjasama kegiatan</p>
-                        </div>
-                        <span class="text-sm text-gray-500">Kemarin</span>
-                    </div>
+                <div id="pesanKontak" class="space-y-3">
+                    <!-- Akan diisi oleh JavaScript -->
                 </div>
             </div>
-
         </main>
     </div>
 
-    <!-- Simple modal simulation (not functional, just placeholder) -->
     <script>
-        // For demo purposes, we don't implement actual CRUD.
-        console.log('Admin Dashboard - UI only');
+        // Cek token
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = 'admin-login.html';
+        }
+
+        // Ambil data user dari localStorage (opsional)
+        const user = JSON.parse(localStorage.getItem('user') || '{}');
+        if (user.nama) {
+            document.getElementById('adminName').textContent = `Halo, ${user.nama}`;
+        }
+
+        // Fungsi untuk fetch dengan token
+        async function fetchWithAuth(url, options = {}) {
+            const headers = {
+                'Authorization': `Bearer ${token}`,
+                ...options.headers
+            };
+            const response = await fetch(url, { ...options, headers });
+            if (response.status === 401) {
+                // Token tidak valid, redirect ke login
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
+                window.location.href = 'admin-login.html';
+                return null;
+            }
+            return response;
+        }
+
+        // Load data dashboard
+        async function loadDashboard() {
+            try {
+                // Ambil semua berita untuk statistik dan tabel
+                const beritaRes = await fetchWithAuth('/api/berita');
+                const berita = beritaRes ? await beritaRes.json() : [];
+                document.getElementById('totalBerita').textContent = berita.length;
+
+                // Tampilkan 5 berita terbaru
+                const beritaTerbaru = berita.slice(0, 5);
+                const tbody = document.getElementById('beritaTerbaru');
+                tbody.innerHTML = beritaTerbaru.map(item => `
+                    <tr>
+                        <td class="px-4 py-3">${item.judul}</td>
+                        <td class="px-4 py-3">${new Date(item.tanggal).toLocaleDateString('id-ID')}</td>
+                        <td class="px-4 py-3">${item.kategori}</td>
+                        <td class="px-4 py-3 space-x-2">
+                            <a href="admin-berita-edit.html?id=${item.id}" class="text-blue-600 hover:text-blue-800"><i class="fas fa-edit"></i></a>
+                            <button class="text-red-600 hover:text-red-800" onclick="hapusBerita(${item.id})"><i class="fas fa-trash"></i></button>
+                            <a href="admin-berita-view.html?id=${item.id}" class="text-gray-600 hover:text-gray-800"><i class="fas fa-eye"></i></a>
+                        </td>
+                    </tr>
+                `).join('');
+
+                // Ambil fasilitas
+                const fasilitasRes = await fetchWithAuth('/api/fasilitas');
+                const fasilitas = fasilitasRes ? await fasilitasRes.json() : [];
+                document.getElementById('totalFasilitas').textContent = fasilitas.length;
+                const fasGrid = document.getElementById('fasilitasGrid');
+                fasGrid.innerHTML = fasilitas.map(item => `
+                    <div class="border rounded-lg p-3 flex items-center justify-between">
+                        <span class="font-medium">${item.nama}</span>
+                        <div>
+                            <a href="admin-fasilitas-edit.html?id=${item.id}" class="text-blue-600 hover:text-blue-800 mr-2"><i class="fas fa-edit"></i></a>
+                            <button class="text-red-600 hover:text-red-800" onclick="hapusFasilitas(${item.id})"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                `).join('');
+
+                // Ambil galeri
+                const galeriRes = await fetchWithAuth('/api/galeri');
+                const galeri = galeriRes ? await galeriRes.json() : [];
+                document.getElementById('totalGaleri').textContent = galeri.length;
+                const galGrid = document.getElementById('galeriGrid');
+                galGrid.innerHTML = galeri.slice(0, 6).map(item => `
+                    <div class="relative group">
+                        <img src="/uploads/${item.file_path}" class="w-full h-24 object-cover rounded-lg">
+                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 rounded-lg">
+                            <a href="admin-galeri-edit.html?id=${item.id}" class="text-white hover:text-gold"><i class="fas fa-edit"></i></a>
+                            <button class="text-white hover:text-red-500" onclick="hapusGaleri(${item.id})"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                `).join('');
+
+                // Ambil pendaftar
+                const pendaftarRes = await fetchWithAuth('/api/pendaftar');
+                const pendaftar = pendaftarRes ? await pendaftarRes.json() : [];
+                document.getElementById('totalPendaftar').textContent = pendaftar.length;
+
+                // Ambil pesan kontak
+                const kontakRes = await fetchWithAuth('/api/kontak');
+                const kontak = kontakRes ? await kontakRes.json() : [];
+                const kontakDiv = document.getElementById('pesanKontak');
+                kontakDiv.innerHTML = kontak.slice(0, 3).map(item => `
+                    <div class="border-b pb-3 flex justify-between items-center">
+                        <div>
+                            <p class="font-semibold">${item.nama}</p>
+                            <p class="text-sm text-gray-600">${item.pesan.substring(0, 50)}...</p>
+                        </div>
+                        <span class="text-sm text-gray-500">${new Date(item.createdAt).toLocaleDateString('id-ID')}</span>
+                    </div>
+                `).join('');
+
+            } catch (err) {
+                console.error('Gagal memuat dashboard:', err);
+            }
+        }
+
+        // Fungsi hapus (akan diimplementasikan nanti)
+        window.hapusBerita = async (id) => {
+            if (confirm('Yakin ingin menghapus berita ini?')) {
+                try {
+                    const res = await fetchWithAuth(`/api/berita/${id}`, { method: 'DELETE' });
+                    if (res && res.ok) {
+                        location.reload();
+                    } else {
+                        alert('Gagal menghapus');
+                    }
+                } catch (err) {
+                    alert('Terjadi kesalahan');
+                }
+            }
+        };
+
+        window.hapusFasilitas = async (id) => {
+            if (confirm('Yakin ingin menghapus fasilitas ini?')) {
+                try {
+                    const res = await fetchWithAuth(`/api/fasilitas/${id}`, { method: 'DELETE' });
+                    if (res && res.ok) {
+                        location.reload();
+                    } else {
+                        alert('Gagal menghapus');
+                    }
+                } catch (err) {
+                    alert('Terjadi kesalahan');
+                }
+            }
+        };
+
+        window.hapusGaleri = async (id) => {
+            if (confirm('Yakin ingin menghapus foto ini?')) {
+                try {
+                    const res = await fetchWithAuth(`/api/galeri/${id}`, { method: 'DELETE' });
+                    if (res && res.ok) {
+                        location.reload();
+                    } else {
+                        alert('Gagal menghapus');
+                    }
+                } catch (err) {
+                    alert('Terjadi kesalahan');
+                }
+            }
+        };
+
+        // Logout
+        document.querySelector('a[href="admin-login.html"]').addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = 'admin-login.html';
+        });
+
+        // Panggil loadDashboard
+        loadDashboard();
     </script>
 </body>
 </html>
