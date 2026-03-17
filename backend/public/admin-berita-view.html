@@ -57,36 +57,88 @@
 
         <!-- Main Content -->
         <main class="flex-1 overflow-y-auto p-6">
-            <div class="mb-4">
-                <a href="admin-berita.html" class="text-navy hover:text-gold transition flex items-center gap-2"><i class="fas fa-arrow-left"></i> Kembali ke Daftar Berita</a>
-            </div>
+        <div class="mb-4">
+            <a href="admin-berita.html" class="text-navy hover:text-gold transition flex items-center gap-2"><i class="fas fa-arrow-left"></i> Kembali ke Daftar Berita</a>
+        </div>
 
-            <div class="bg-white rounded-xl shadow-md p-6 md:p-8">
-                <!-- Meta -->
-                <div class="flex flex-wrap gap-4 text-gray-500 mb-4">
-                    <span><i class="fas fa-calendar-alt text-gold mr-2"></i> 25 Februari 2026</span>
-                    <span><i class="fas fa-user text-gold mr-2"></i> Admin</span>
-                    <span><i class="fas fa-folder text-gold mr-2"></i> Prestasi</span>
-                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs">Published</span>
-                </div>
-                <!-- Judul -->
-                <h1 class="text-3xl md:text-4xl font-bold text-navy mb-4">Siswa SMA Lokon Tomohon Raih Medali Emas Olimpiade Sains Nasional 2026</h1>
-                <!-- Gambar -->
-                <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Berita" class="w-full rounded-xl mb-6 shadow-md">
-                <!-- Konten -->
-                <div class="prose max-w-none text-gray-700">
-                    <p>Prestasi membanggakan kembali diraih oleh siswa SMA Lokon Tomohon. Maria Angelina, siswi kelas XII IPA 1, berhasil meraih medali emas dalam Olimpiade Sains Nasional (OSN) 2026 bidang Biologi yang diselenggarakan di Jakarta pada 20-25 Februari 2026.</p>
-                    <p>Kompetisi tahunan ini diikuti oleh ribuan siswa terbaik dari seluruh Indonesia. Maria berhasil melewati babak penyisihan, semifinal, hingga final dengan nilai tertinggi. “Saya sangat bersyukur dan bangga bisa mengharumkan nama sekolah dan daerah. Semua ini berkat dukungan guru, orang tua, dan teman-teman,” ujar Maria dengan wajah sumringah.</p>
-                    <p>Selama persiapan, Maria dibimbing secara intensif oleh tim guru biologi SMA Lokon. Ia menjalani latihan soal, praktikum, dan simulasi ujian setiap minggu. Kepala Sekolah, Ibu Dra. Theresia Sumilat, M.Pd., mengungkapkan kebanggaannya. “Kami sangat bangga dengan prestasi Maria. Ini membuktikan bahwa kualitas pendidikan di SMA Lokon mampu bersaing di tingkat nasional.”</p>
-                </div>
+        <div class="bg-white rounded-xl shadow-md p-6 md:p-8" id="detailContainer">
+            <!-- Akan diisi JS -->
+            <div class="text-center py-8">Memuat...</div>
+        </div>
+    </main>
 
-                <!-- Tombol Aksi -->
-                <div class="flex gap-3 mt-6 pt-4 border-t">
-                    <a href="admin-berita-edit.html" class="bg-navy text-white px-5 py-2 rounded-lg hover:bg-gold hover:text-navy transition flex items-center gap-2"><i class="fas fa-edit"></i> Edit</a>
-                    <button class="border border-red-500 text-red-500 px-5 py-2 rounded-lg hover:bg-red-500 hover:text-white transition flex items-center gap-2"><i class="fas fa-trash"></i> Hapus</button>
-                </div>
-            </div>
-        </main>
-    </div>
+    <script>
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = 'admin-login.html';
+        }
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const beritaId = urlParams.get('id');
+        if (!beritaId) {
+            alert('ID berita tidak ditemukan');
+            window.location.href = 'admin-berita.html';
+        }
+
+        async function loadDetail() {
+            try {
+                const response = await fetch(`/api/berita/${beritaId}`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (!response.ok) throw new Error('Gagal mengambil data');
+                const data = await response.json();
+
+                const statusClass = data.status === 'Published' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700';
+                const html = `
+                    <div class="flex flex-wrap gap-4 text-gray-500 mb-4">
+                        <span><i class="fas fa-calendar-alt text-gold mr-2"></i> ${new Date(data.tanggal).toLocaleDateString('id-ID')}</span>
+                        <span><i class="fas fa-user text-gold mr-2"></i> ${data.penulis}</span>
+                        <span><i class="fas fa-folder text-gold mr-2"></i> ${data.kategori}</span>
+                        <span class="${statusClass} px-3 py-1 rounded-full text-xs">${data.status}</span>
+                    </div>
+                    <h1 class="text-3xl md:text-4xl font-bold text-navy mb-4">${data.judul}</h1>
+                    ${data.gambar ? `<img src="/uploads/${data.gambar}" alt="Gambar" class="w-full rounded-xl mb-6 shadow-md">` : ''}
+                    <div class="prose max-w-none text-gray-700">
+                        ${data.konten.replace(/\n/g, '<br>')}
+                    </div>
+                    <div class="flex gap-3 mt-6 pt-4 border-t">
+                        <a href="admin-berita-edit.html?id=${data.id}" class="bg-navy text-white px-5 py-2 rounded-lg hover:bg-gold hover:text-navy transition flex items-center gap-2"><i class="fas fa-edit"></i> Edit</a>
+                        <button class="border border-red-500 text-red-500 px-5 py-2 rounded-lg hover:bg-red-500 hover:text-white transition flex items-center gap-2" onclick="hapusBerita(${data.id})"><i class="fas fa-trash"></i> Hapus</button>
+                    </div>
+                `;
+                document.getElementById('detailContainer').innerHTML = html;
+            } catch (err) {
+                document.getElementById('detailContainer').innerHTML = `<div class="text-red-500 text-center py-8">${err.message}</div>`;
+            }
+        }
+
+        window.hapusBerita = async (id) => {
+            if (confirm('Yakin ingin menghapus berita ini?')) {
+                try {
+                    const response = await fetch(`/api/berita/${id}`, {
+                        method: 'DELETE',
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    if (response.ok) {
+                        window.location.href = 'admin-berita.html';
+                    } else {
+                        alert('Gagal menghapus');
+                    }
+                } catch (err) {
+                    alert('Terjadi kesalahan');
+                }
+            }
+        };
+
+        loadDetail();
+
+        // Logout
+        document.querySelector('a[href="admin-login.html"]').addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = 'admin-login.html';
+        });
+    </script>
 </body>
 </html>

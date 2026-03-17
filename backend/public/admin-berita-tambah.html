@@ -57,54 +57,99 @@
 
         <!-- Main Content -->
         <main class="flex-1 overflow-y-auto p-6">
-            <div class="mb-4">
-                <a href="admin-berita.html" class="text-navy hover:text-gold transition flex items-center gap-2"><i class="fas fa-arrow-left"></i> Kembali ke Daftar Berita</a>
-            </div>
+        <div class="mb-4">
+            <a href="admin-berita.html" class="text-navy hover:text-gold transition flex items-center gap-2"><i class="fas fa-arrow-left"></i> Kembali ke Daftar Berita</a>
+        </div>
 
-            <div class="bg-white rounded-xl shadow-md p-6">
-                <h1 class="text-2xl font-bold text-navy mb-6">Tambah Berita Baru</h1>
-                <form class="space-y-4">
+        <div class="bg-white rounded-xl shadow-md p-6">
+            <h1 class="text-2xl font-bold text-navy mb-6">Tambah Berita Baru</h1>
+            <form id="formTambahBerita" class="space-y-4" enctype="multipart/form-data">
+                <div>
+                    <label class="block text-sm font-medium mb-1">Judul</label>
+                    <input type="text" name="judul" placeholder="Masukkan judul berita" required class="w-full border rounded-lg px-4 py-2">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-medium mb-1">Judul</label>
-                        <input type="text" placeholder="Masukkan judul berita" class="w-full border rounded-lg px-4 py-2">
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm font-medium mb-1">Kategori</label>
-                            <select class="w-full border rounded-lg px-4 py-2">
-                                <option>Prestasi</option>
-                                <option>Kegiatan</option>
-                                <option>Sosial</option>
-                                <option>Pengumuman</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-1">Tanggal</label>
-                            <input type="date" class="w-full border rounded-lg px-4 py-2">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium mb-1">Status</label>
-                        <select class="w-full border rounded-lg px-4 py-2">
-                            <option>Published</option>
-                            <option>Draft</option>
+                        <label class="block text-sm font-medium mb-1">Kategori</label>
+                        <select name="kategori" required class="w-full border rounded-lg px-4 py-2">
+                            <option value="">Pilih Kategori</option>
+                            <option value="Prestasi">Prestasi</option>
+                            <option value="Kegiatan">Kegiatan</option>
+                            <option value="Sosial">Sosial</option>
+                            <option value="Pengumuman">Pengumuman</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium mb-1">Konten</label>
-                        <textarea rows="8" placeholder="Tulis konten berita di sini..." class="w-full border rounded-lg px-4 py-2"></textarea>
+                        <label class="block text-sm font-medium mb-1">Tanggal</label>
+                        <input type="date" name="tanggal" required class="w-full border rounded-lg px-4 py-2">
                     </div>
-                    <div>
-                        <label class="block text-sm font-medium mb-1">Gambar</label>
-                        <input type="file" class="w-full border rounded-lg px-4 py-2">
-                    </div>
-                    <div class="flex gap-3 pt-4">
-                        <button type="submit" class="bg-navy text-white px-6 py-2 rounded-lg hover:bg-gold hover:text-navy transition">Simpan Berita</button>
-                        <a href="admin-berita.html" class="border border-gray-300 px-6 py-2 rounded-lg hover:bg-gray-100 transition">Batal</a>
-                    </div>
-                </form>
-            </div>
-        </main>
-    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">Status</label>
+                    <select name="status" class="w-full border rounded-lg px-4 py-2">
+                        <option value="Published">Published</option>
+                        <option value="Draft">Draft</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">Konten</label>
+                    <textarea name="konten" rows="8" placeholder="Tulis konten berita di sini..." required class="w-full border rounded-lg px-4 py-2"></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">Gambar</label>
+                    <input type="file" name="gambar" accept="image/*" class="w-full border rounded-lg px-4 py-2">
+                </div>
+                <div class="flex gap-3 pt-4">
+                    <button type="submit" class="bg-navy text-white px-6 py-2 rounded-lg hover:bg-gold hover:text-navy transition">Simpan Berita</button>
+                    <a href="admin-berita.html" class="border border-gray-300 px-6 py-2 rounded-lg hover:bg-gray-100 transition">Batal</a>
+                </div>
+                <div id="errorMessage" class="text-red-500 text-sm hidden"></div>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = 'admin-login.html';
+        }
+
+        document.getElementById('formTambahBerita').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.classList.add('hidden');
+
+            try {
+                const response = await fetch('/api/berita', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: formData
+                });
+
+                if (response.ok) {
+                    // Redirect ke daftar berita
+                    window.location.href = 'admin-berita.html';
+                } else {
+                    const data = await response.json();
+                    errorDiv.textContent = data.message || 'Gagal menyimpan berita';
+                    errorDiv.classList.remove('hidden');
+                }
+            } catch (err) {
+                errorDiv.textContent = 'Terjadi kesalahan jaringan';
+                errorDiv.classList.remove('hidden');
+            }
+        });
+
+        // Logout
+        document.querySelector('a[href="admin-login.html"]').addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = 'admin-login.html';
+        });
+    </script>
 </body>
 </html>

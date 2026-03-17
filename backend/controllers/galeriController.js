@@ -1,13 +1,32 @@
-const { Galeri } = require('../models');
-const fs = require('fs');
-const path = require('path');
+const { Galeri } = require("../models");
+const fs = require("fs");
+const path = require("path");
 
 // @desc    Get all galeri
 // @route   GET /api/galeri
 exports.getAllGaleri = async (req, res) => {
   try {
-    const galeri = await Galeri.findAll({ order: [['urutan', 'ASC'], ['createdAt', 'DESC']] });
+    const { limit } = req.query;
+    const options = {
+      order: [
+        ["urutan", "ASC"],
+        ["createdAt", "DESC"],
+      ],
+    };
+    if (limit) {
+      options.limit = parseInt(limit);
+    }
+    const galeri = await Galeri.findAll(options);
     res.json(galeri);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+exports.countGaleri = async (req, res) => {
+  try {
+    const count = await Galeri.count();
+    res.json({ count });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -19,7 +38,7 @@ exports.getGaleriById = async (req, res) => {
   try {
     const galeri = await Galeri.findByPk(req.params.id);
     if (!galeri) {
-      return res.status(404).json({ message: 'Galeri tidak ditemukan' });
+      return res.status(404).json({ message: "Galeri tidak ditemukan" });
     }
     res.json(galeri);
   } catch (err) {
@@ -33,7 +52,7 @@ exports.createGaleri = async (req, res) => {
   try {
     const { judul, deskripsi, kategori, urutan } = req.body;
     if (!req.file) {
-      return res.status(400).json({ message: 'File gambar harus diupload' });
+      return res.status(400).json({ message: "File gambar harus diupload" });
     }
     const file_path = req.file.filename;
 
@@ -57,7 +76,7 @@ exports.updateGaleri = async (req, res) => {
   try {
     const galeri = await Galeri.findByPk(req.params.id);
     if (!galeri) {
-      return res.status(404).json({ message: 'Galeri tidak ditemukan' });
+      return res.status(404).json({ message: "Galeri tidak ditemukan" });
     }
 
     const { judul, deskripsi, kategori, urutan } = req.body;
@@ -65,7 +84,11 @@ exports.updateGaleri = async (req, res) => {
 
     if (req.file) {
       // Hapus file lama
-      const oldPath = path.join(__dirname, '../public/uploads', galeri.file_path);
+      const oldPath = path.join(
+        __dirname,
+        "../public/uploads",
+        galeri.file_path,
+      );
       if (fs.existsSync(oldPath)) {
         fs.unlinkSync(oldPath);
       }
@@ -92,17 +115,21 @@ exports.deleteGaleri = async (req, res) => {
   try {
     const galeri = await Galeri.findByPk(req.params.id);
     if (!galeri) {
-      return res.status(404).json({ message: 'Galeri tidak ditemukan' });
+      return res.status(404).json({ message: "Galeri tidak ditemukan" });
     }
 
     // Hapus file
-    const filePath = path.join(__dirname, '../public/uploads', galeri.file_path);
+    const filePath = path.join(
+      __dirname,
+      "../public/uploads",
+      galeri.file_path,
+    );
     if (fs.existsSync(filePath)) {
       fs.unlinkSync(filePath);
     }
 
     await galeri.destroy();
-    res.json({ message: 'Galeri berhasil dihapus' });
+    res.json({ message: "Galeri berhasil dihapus" });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

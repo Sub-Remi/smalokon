@@ -1,11 +1,27 @@
-const { Pendaftar } = require('../models');
+const { Pendaftar } = require("../models");
 
 // @desc    Get all pendaftar
 // @route   GET /api/pendaftar
 exports.getAllPendaftar = async (req, res) => {
   try {
-    const pendaftar = await Pendaftar.findAll({ order: [['createdAt', 'DESC']] });
+    const { limit } = req.query;
+    const options = {
+      order: [["createdAt", "DESC"]],
+    };
+    if (limit) {
+      options.limit = parseInt(limit);
+    }
+    const pendaftar = await Pendaftar.findAll(options);
     res.json(pendaftar);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+exports.countPendaftar = async (req, res) => {
+  try {
+    const count = await Pendaftar.count();
+    res.json({ count });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -17,7 +33,7 @@ exports.getPendaftarById = async (req, res) => {
   try {
     const pendaftar = await Pendaftar.findByPk(req.params.id);
     if (!pendaftar) {
-      return res.status(404).json({ message: 'Pendaftar tidak ditemukan' });
+      return res.status(404).json({ message: "Pendaftar tidak ditemukan" });
     }
     res.json(pendaftar);
   } catch (err) {
@@ -32,7 +48,9 @@ exports.createPendaftar = async (req, res) => {
     const { nama, asal_sekolah, email, telepon, alamat } = req.body;
     // Validasi sederhana
     if (!nama || !asal_sekolah) {
-      return res.status(400).json({ message: 'Nama dan asal sekolah harus diisi' });
+      return res
+        .status(400)
+        .json({ message: "Nama dan asal sekolah harus diisi" });
     }
 
     const pendaftar = await Pendaftar.create({
@@ -41,10 +59,10 @@ exports.createPendaftar = async (req, res) => {
       email,
       telepon,
       alamat,
-      status: 'Menunggu'
+      status: "Menunggu",
     });
 
-    res.status(201).json({ message: 'Pendaftaran berhasil', id: pendaftar.id });
+    res.status(201).json({ message: "Pendaftaran berhasil", id: pendaftar.id });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -56,7 +74,7 @@ exports.updatePendaftar = async (req, res) => {
   try {
     const pendaftar = await Pendaftar.findByPk(req.params.id);
     if (!pendaftar) {
-      return res.status(404).json({ message: 'Pendaftar tidak ditemukan' });
+      return res.status(404).json({ message: "Pendaftar tidak ditemukan" });
     }
 
     const { nama, asal_sekolah, email, telepon, alamat, status } = req.body;
@@ -81,10 +99,10 @@ exports.deletePendaftar = async (req, res) => {
   try {
     const pendaftar = await Pendaftar.findByPk(req.params.id);
     if (!pendaftar) {
-      return res.status(404).json({ message: 'Pendaftar tidak ditemukan' });
+      return res.status(404).json({ message: "Pendaftar tidak ditemukan" });
     }
     await pendaftar.destroy();
-    res.json({ message: 'Pendaftar berhasil dihapus' });
+    res.json({ message: "Pendaftar berhasil dihapus" });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
