@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
-const db = require('./models'); // ini sudah membawa sequelize
+const db = require('./models'); // mengimpor seluruh model dan sequelize instance
 const routes = require('./routes');
 
 const app = express();
@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // API routes
 app.use('/api', routes);
 
-// Sinkronisasi database dan jalankan server
+// Sync database dan jalankan server
 db.sequelize.authenticate()
   .then(() => {
     console.log('Database connected...');
@@ -28,7 +28,4 @@ db.sequelize.authenticate()
   .then(() => {
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
   })
-  .catch(err => {
-    console.error('Unable to connect to database:', err);
-    process.exit(1);
-  });
+  .catch(err => console.error('Unable to connect to database:', err));
